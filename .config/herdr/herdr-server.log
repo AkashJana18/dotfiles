@@ -1,0 +1,290 @@
+2026-06-29T10:13:13.040022Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-06-29T10:13:13.040556Z  INFO herdr::api::server: api server listening path=/Users/akash/.config/herdr/herdr.sock
+2026-06-29T10:13:13.041524Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-06-29T10:13:13.056339Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T10:13:13.056888Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-29T10:13:13.059145Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=20144
+2026-06-29T10:13:13.059385Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w1" pane_id=1
+2026-06-29T10:13:13.059405Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-29T10:13:13.059451Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-29T10:13:13.059471Z  INFO herdr::server::headless: created startup workspace cwd=/Users/akash
+2026-06-29T10:13:13.059582Z  INFO herdr::server::headless: client protocol socket listening path=/Users/akash/.config/herdr/herdr-client.sock
+2026-06-29T10:13:13.059614Z  INFO herdr::server::headless: herdr server started api_socket=/Users/akash/.config/herdr/herdr.sock client_socket=/Users/akash/.config/herdr/herdr-client.sock
+2026-06-29T10:13:13.059643Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=20127
+2026-06-29T10:13:13.334063Z  INFO herdr::server::headless: client connected client_id=2 cols=150 rows=42 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-06-29T10:13:18.062789Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-29T10:13:32.145393Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-29T10:13:32.146344Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-29T10:13:37.154103Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-29T10:13:54.393677Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-29T10:13:54.393815Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-29T10:13:55.219944Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-29T10:13:55.220057Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-29T10:13:55.427212Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-29T10:13:55.427334Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-29T10:14:00.434059Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-29T10:28:45.090894Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=41 cols=124 scrollback_limit_bytes=10000000
+2026-06-29T10:28:45.098474Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=24585
+2026-06-29T10:28:45.098854Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-29T10:28:45.098911Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2" pane_id=2
+2026-06-29T10:28:50.109496Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-29T10:29:11.774801Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-06-29T10:43:13.088419Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T11:13:13.122791Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T11:43:13.154409Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T13:29:03.633207Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T14:01:26.555430Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T14:31:26.573591Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T15:01:26.587675Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T15:36:38.817661Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T16:42:40.858818Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T17:12:40.865509Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T17:42:40.844167Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T18:52:25.267237Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T19:22:25.263566Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T19:52:25.263725Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T20:22:25.267601Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T20:52:25.264955Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-29T20:52:28.310999Z  WARN herdr::detect::manifest_update: agent detection manifest update failed: failed to fetch https://herdr.dev/agent-detection/index.toml
+2026-06-29T20:52:28.313252Z  WARN herdr::logging: update check failed event="update.check.complete" subsystem="update" outcome="error" err="failed to fetch Homebrew formula JSON"
+2026-06-30T12:00:38.623547Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-06-30T12:00:38.625187Z  INFO herdr::api::server: api server listening path=/Users/akash/.config/herdr/herdr.sock
+2026-06-30T12:00:38.630874Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-30T12:00:38.635609Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=15388
+2026-06-30T12:00:38.636073Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-06-30T12:00:38.637637Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=15389
+2026-06-30T12:00:38.675400Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-06-30T12:00:38.675475Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-06-30T12:00:38.701673Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T12:00:38.703277Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/Users/akash
+2026-06-30T12:00:38.703466Z  INFO herdr::server::headless: client protocol socket listening path=/Users/akash/.config/herdr/herdr-client.sock
+2026-06-30T12:00:38.703479Z  INFO herdr::server::headless: herdr server started api_socket=/Users/akash/.config/herdr/herdr.sock client_socket=/Users/akash/.config/herdr/herdr-client.sock
+2026-06-30T12:00:38.703504Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=15387
+2026-06-30T12:00:38.960158Z  INFO herdr::server::headless: client connected client_id=2 cols=150 rows=42 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-06-30T12:01:08.424039Z  INFO herdr::logging: integration action finished event="integration.action" subsystem="integration" outcome="ok" action="install" target="codex"
+2026-06-30T12:01:13.433114Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-30T12:01:26.705154Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-30T12:01:27.953424Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-30T12:01:32.961344Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-30T12:09:47.937423Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-30T12:09:47.939308Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-30T12:09:52.942506Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-30T12:10:07.333295Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-30T12:10:08.403991Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-30T12:10:10.704872Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-30T12:10:10.705012Z  INFO herdr::logging: tab closed event="tab.close" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t2"
+2026-06-30T12:10:13.643685Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w1" tab_id="w1:t1"
+2026-06-30T12:10:13.643787Z  INFO herdr::logging: workspace closed event="workspace.close" subsystem="workspace" outcome="ok" workspace_id="w1"
+2026-06-30T12:10:13.645522Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=41 cols=124 scrollback_limit_bytes=10000000
+2026-06-30T12:10:13.651687Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=17103
+2026-06-30T12:10:13.652050Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w2" pane_id=3
+2026-06-30T12:10:13.652068Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-06-30T12:10:13.652083Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-06-30T12:10:14.214723Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 1, signal: None }"
+2026-06-30T12:10:14.238481Z  INFO herdr::pane: pane session terminated pane=2 pid=15389 signal=Hangup
+2026-06-30T12:10:14.239879Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 1, signal: None }"
+2026-06-30T12:10:14.259306Z  INFO herdr::pane: pane session terminated pane=1 pid=15388 signal=Hangup
+2026-06-30T12:10:14.259381Z  WARN herdr::app::actions: PaneDied for unknown pane pane=2
+2026-06-30T12:10:14.259387Z  WARN herdr::app::actions: PaneDied for unknown pane pane=1
+2026-06-30T12:10:17.065827Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-06-30T12:10:17.065906Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-06-30T12:10:22.070479Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-06-30T12:30:38.696350Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T13:00:38.690684Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T13:39:12.839466Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T14:09:12.849881Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T15:28:06.609416Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T15:58:09.098889Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T16:28:09.117550Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T16:58:09.166012Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T17:28:09.176600Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T17:58:09.206454Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T18:28:09.206734Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T18:58:09.217950Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T19:28:09.236840Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T19:58:09.248816Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T20:28:09.261160Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T20:58:09.237344Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T21:28:09.211435Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T21:58:09.204293Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-06-30T22:07:40.664964Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-01T06:57:01.284941Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-07-01T06:57:01.286941Z  INFO herdr::api::server: api server listening path=/Users/akash/.config/herdr/herdr.sock
+2026-07-01T06:57:01.292240Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-01T06:57:01.297321Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=4037
+2026-07-01T06:57:01.298352Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-01T06:57:01.298421Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-01T06:57:01.318535Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T06:57:01.320252Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/Users/akash
+2026-07-01T06:57:01.320400Z  INFO herdr::server::headless: client protocol socket listening path=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-01T06:57:01.320413Z  INFO herdr::server::headless: herdr server started api_socket=/Users/akash/.config/herdr/herdr.sock client_socket=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-01T06:57:01.320437Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=4036
+2026-07-01T06:57:01.577994Z  INFO herdr::server::headless: client connected client_id=2 cols=150 rows=42 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-01T07:05:24.124410Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=20 cols=62 scrollback_limit_bytes=10000000
+2026-07-01T07:05:24.130227Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=5948
+2026-07-01T07:05:29.140469Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-01T07:05:38.792436Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-01T07:05:43.794804Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-01T07:05:46.502665Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-01T07:05:51.509892Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-01T07:06:10.496968Z  INFO herdr::server::headless: client disconnected client_id=2
+2026-07-01T07:27:01.310080Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T07:57:01.306666Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T09:05:33.871976Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T10:18:45.774593Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T11:01:01.740294Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T11:31:01.770829Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T12:01:01.739540Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T12:49:43.000328Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T13:19:43.020546Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T13:49:43.013594Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T14:28:31.281535Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T14:58:31.273830Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T15:32:29.172167Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T16:02:29.163785Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T16:37:46.030670Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T17:07:46.071909Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T17:37:46.097258Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T18:07:46.111743Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T18:37:46.122209Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T19:07:46.126078Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T19:37:46.116699Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-01T20:07:46.137449Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T07:09:25.059006Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-07-03T07:09:25.061228Z  INFO herdr::api::server: api server listening path=/Users/akash/.config/herdr/herdr.sock
+2026-07-03T07:09:25.066865Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-03T07:09:25.071886Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=5502
+2026-07-03T07:09:25.072675Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-03T07:09:25.074228Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=5503
+2026-07-03T07:09:25.112117Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-03T07:09:25.112184Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-03T07:09:25.136108Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T07:09:25.137774Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/Users/akash
+2026-07-03T07:09:25.137980Z  INFO herdr::server::headless: client protocol socket listening path=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-03T07:09:25.137996Z  INFO herdr::server::headless: herdr server started api_socket=/Users/akash/.config/herdr/herdr.sock client_socket=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-03T07:09:25.138023Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=5501
+2026-07-03T07:09:25.393322Z  INFO herdr::server::headless: client connected client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-03T07:09:30.315198Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 127, signal: None }"
+2026-07-03T07:09:30.315384Z  INFO herdr::pane: pane session terminated pane=2 pid=5503 signal=Hangup
+2026-07-03T07:09:35.323510Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T07:11:29.989897Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T07:11:29.990030Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t1"
+2026-07-03T07:11:34.993228Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T07:11:51.897231Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=43 cols=124 scrollback_limit_bytes=10000000
+2026-07-03T07:11:51.903259Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=6824
+2026-07-03T07:11:51.903572Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t2"
+2026-07-03T07:11:51.903596Z  INFO herdr::logging: tab created event="tab.create" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t2" pane_id=3
+2026-07-03T07:11:56.913196Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T07:12:31.133389Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=43 cols=124 scrollback_limit_bytes=10000000
+2026-07-03T07:12:31.140055Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=7350
+2026-07-03T07:12:31.140497Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w3" pane_id=4
+2026-07-03T07:12:31.140518Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w3"
+2026-07-03T07:12:31.140538Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w3" tab_id="w3:t1"
+2026-07-03T07:12:36.149673Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=2
+2026-07-03T07:15:51.259321Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w2"
+2026-07-03T07:15:51.260347Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w2" tab_id="w2:t2"
+2026-07-03T07:15:56.264159Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=2
+2026-07-03T07:17:36.035428Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=3 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T07:17:36.035755Z  INFO herdr::pane: pane session terminated pane=3 pid=6824 signal=Hangup
+2026-07-03T07:17:39.500860Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T07:17:39.501006Z  INFO herdr::pane: pane session terminated pane=1 pid=5502 signal=Hangup
+2026-07-03T07:17:42.530540Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T07:17:42.530649Z  INFO herdr::pane: pane session terminated pane=4 pid=7350 signal=Hangup
+2026-07-03T07:17:42.530831Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=5 rows=43 cols=124 scrollback_limit_bytes=10000000
+2026-07-03T07:17:42.535617Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=5 pid=8976
+2026-07-03T07:17:42.535881Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w4" pane_id=5
+2026-07-03T07:17:42.535894Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w4"
+2026-07-03T07:17:42.535913Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w4" tab_id="w4:t1"
+2026-07-03T07:17:47.420491Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=5 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T07:17:47.420623Z  INFO herdr::pane: pane session terminated pane=5 pid=8976 signal=Hangup
+2026-07-03T07:17:47.420843Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=6 rows=43 cols=124 scrollback_limit_bytes=10000000
+2026-07-03T07:17:47.425867Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=6 pid=9506
+2026-07-03T07:17:47.426231Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w5" pane_id=6
+2026-07-03T07:17:47.426248Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w5"
+2026-07-03T07:17:47.426266Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w5" tab_id="w5:t1"
+2026-07-03T07:17:52.436061Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T07:18:59.405020Z  INFO herdr::server::headless: server shutdown initiated
+2026-07-03T07:18:59.460125Z  INFO herdr::server::headless: completing server shutdown
+2026-07-03T07:18:59.516578Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T07:18:59.516614Z  INFO herdr::server::headless: headless server exiting
+2026-07-03T07:18:59.519546Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=6 status="ExitStatus { code: 1, signal: None }"
+2026-07-03T07:18:59.542243Z  INFO herdr::pane: pane session terminated pane=6 pid=9506 signal=Hangup
+2026-07-03T07:18:59.543075Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="server" outcome="completed" pid=5501
+2026-07-03T17:48:53.232966Z  INFO herdr::platform::macos: raised server file descriptor soft limit previous=256 target=8192
+2026-07-03T17:48:53.234671Z  INFO herdr::api::server: api server listening path=/Users/akash/.config/herdr/herdr.sock
+2026-07-03T17:48:53.239677Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=1 rows=24 cols=80 scrollback_limit_bytes=10000000
+2026-07-03T17:48:53.244391Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=1 pid=36836
+2026-07-03T17:48:53.244929Z  INFO herdr::logging: session restore evaluated event="persist.restore" subsystem="persist" outcome="ok" workspaces=1
+2026-07-03T17:48:53.245101Z  INFO herdr::app: using pane scrollback configuration pane_scrollback_limit_bytes=10000000
+2026-07-03T17:48:53.265137Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T17:48:53.265599Z  INFO herdr::server::headless: restored session already has workspaces; ignoring startup cwd cwd=/Users/akash/dotfiles
+2026-07-03T17:48:53.265839Z  INFO herdr::server::headless: client protocol socket listening path=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-03T17:48:53.265854Z  INFO herdr::server::headless: herdr server started api_socket=/Users/akash/.config/herdr/herdr.sock client_socket=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-03T17:48:53.265879Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="server" outcome="started" pid=36835
+2026-07-03T17:48:53.287017Z  INFO herdr::server::headless: client connected client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0 render_encoding=SemanticFrame
+2026-07-03T17:49:13.489819Z  INFO herdr::pane: agent changed pane=1 previous_agent=None agent=Some(Codex) process=codex pgid=Some(37009)
+2026-07-03T17:52:49.259997Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T17:55:04.062092Z  INFO herdr::pane: agent changed pane=1 previous_agent=Some(Codex) agent=None pgid=Some(36836)
+2026-07-03T17:55:08.764395Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T17:57:00.851811Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w5"
+2026-07-03T17:57:00.852785Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w5" tab_id="w5:t1"
+2026-07-03T17:57:05.855489Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T17:57:12.362742Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=1 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T17:57:12.362921Z  INFO herdr::pane: pane session terminated pane=1 pid=36836 signal=Hangup
+2026-07-03T17:57:12.363565Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=2 rows=43 cols=124 scrollback_limit_bytes=10000000
+2026-07-03T17:57:12.368848Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=2 pid=37821
+2026-07-03T17:57:12.369335Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w6" pane_id=2
+2026-07-03T17:57:12.369366Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w6"
+2026-07-03T17:57:12.369384Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w6" tab_id="w6:t1"
+2026-07-03T17:57:17.374241Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T17:57:19.952646Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=2 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T17:57:19.952807Z  INFO herdr::pane: pane session terminated pane=2 pid=37821 signal=Hangup
+2026-07-03T17:57:19.953042Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=3 rows=43 cols=124 scrollback_limit_bytes=10000000
+2026-07-03T17:57:19.958296Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=3 pid=38458
+2026-07-03T17:57:19.958631Z  INFO herdr::logging: workspace created event="workspace.create" subsystem="workspace" outcome="ok" workspace_id="w7" pane_id=3
+2026-07-03T17:57:19.958652Z  INFO herdr::logging: workspace focused event="workspace.focus" subsystem="workspace" outcome="ok" workspace_id="w7"
+2026-07-03T17:57:19.958670Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-03T17:57:24.968639Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T18:12:31.833553Z  INFO herdr::pane: agent changed pane=3 previous_agent=None agent=Some(Codex) process=codex pgid=Some(40478)
+2026-07-03T18:12:55.612316Z  INFO herdr::pane: agent changed pane=3 previous_agent=Some(Codex) agent=None pgid=Some(38458)
+2026-07-03T18:13:48.633065Z  INFO herdr::pane: agent changed pane=3 previous_agent=None agent=Some(Codex) process=codex pgid=Some(41029)
+2026-07-03T18:14:06.289941Z  INFO herdr::pane: agent changed pane=3 previous_agent=Some(Codex) agent=None pgid=Some(38458)
+2026-07-03T18:14:08.813431Z  INFO herdr::pane: agent changed pane=3 previous_agent=None agent=Some(Codex) process=codex pgid=Some(41617)
+2026-07-03T18:18:53.251523Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T18:30:49.991349Z  INFO herdr::pane: agent changed pane=3 previous_agent=Some(Codex) agent=None pgid=Some(38458)
+2026-07-03T18:47:31.155137Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-03T18:47:36.164790Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T18:48:53.244408Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T19:05:44.766582Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-03T19:05:47.481706Z  INFO herdr::app::actions: copied selection to clipboard
+2026-07-03T19:18:53.258498Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T19:43:33.986393Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:43:59.158142Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:44:35.762821Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:44:51.236646Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:48:53.275301Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T19:50:08.380123Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:50:22.018575Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:58:52.321069Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T19:59:06.696057Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:00:18.962143Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:00:29.175620Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:07:53.154891Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:07:55.654422Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:08:01.268712Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:08:36.127827Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:18:53.221382Z  INFO herdr::logging: checking for updates event="update.check.start" subsystem="update" outcome="started"
+2026-07-03T20:22:48.502250Z  INFO herdr::server::headless: client resize client_id=2 cols=73 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:23:01.473096Z  INFO herdr::server::headless: client resize client_id=2 cols=150 rows=44 cell_width_px=0 cell_height_px=0
+2026-07-03T20:43:33.662316Z  INFO herdr::logging: spawning pane terminal event="pane.spawn.start" subsystem="pane" outcome="started" pane_id=4 rows=21 cols=62 scrollback_limit_bytes=10000000
+2026-07-03T20:43:33.669734Z  INFO herdr::logging: pane child spawned event="pane.spawned" subsystem="pane" outcome="ok" pane_id=4 pid=61351
+2026-07-03T20:43:36.192960Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-03T20:43:41.199571Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T20:43:45.870805Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-03T20:43:50.877135Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T20:44:42.056459Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-03T20:44:47.065068Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
+2026-07-03T20:46:44.004179Z  INFO herdr::logging: tab focused event="tab.focus" subsystem="tab" outcome="ok" workspace_id="w7" tab_id="w7:t1"
+2026-07-03T20:46:46.644656Z  INFO herdr::logging: pane child exited event="pane.exit" subsystem="pane" outcome="completed" pane_id=4 status="ExitStatus { code: 0, signal: None }"
+2026-07-03T20:46:46.644802Z  INFO herdr::pane: pane session terminated pane=4 pid=61351 signal=Hangup
+2026-07-03T20:46:51.651404Z  INFO herdr::logging: session saved event="persist.save" subsystem="persist" outcome="ok" path=/Users/akash/.config/herdr/session.json workspaces=1
