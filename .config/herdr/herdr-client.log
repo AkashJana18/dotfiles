@@ -1,0 +1,16 @@
+2026-06-29T10:13:13.088911Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=20126
+2026-06-29T10:13:13.088965Z  INFO herdr::client: connecting to server path=/Users/akash/.config/herdr/herdr-client.sock
+2026-06-29T10:13:13.334063Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-06-30T12:00:38.726531Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=15386
+2026-06-30T12:00:38.726723Z  INFO herdr::client: connecting to server path=/Users/akash/.config/herdr/herdr-client.sock
+2026-06-30T12:00:38.960145Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-01T06:57:01.328362Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=4035
+2026-07-01T06:57:01.328532Z  INFO herdr::client: connecting to server path=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-01T06:57:01.577981Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-03T07:09:25.160157Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=5500
+2026-07-03T07:09:25.164972Z  INFO herdr::client: connecting to server path=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-03T07:09:25.393322Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
+2026-07-03T07:18:59.405796Z  INFO herdr::logging: herdr exiting event="app.shutdown" subsystem="client" outcome="completed" pid=5500
+2026-07-03T17:48:53.280466Z  INFO herdr::logging: herdr starting event="app.startup" subsystem="client" outcome="started" pid=36834
+2026-07-03T17:48:53.280653Z  INFO herdr::client: connecting to server path=/Users/akash/.config/herdr/herdr-client.sock
+2026-07-03T17:48:53.286737Z  INFO herdr::client: handshake succeeded version=14 encoding=SemanticFrame
