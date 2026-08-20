@@ -1,0 +1,182 @@
+[
+  {
+    "plugin_id": "herdr.scratch",
+    "name": "Scratch",
+    "version": "1.0.1",
+    "min_herdr_version": "0.7.4",
+    "description": "Persistent named scratchpads for Herdr",
+    "manifest_path": "/Users/akash/dotfiles/.config/herdr/plugins/github/herdr.scratch-467bcaff7908/herdr-plugin.toml",
+    "plugin_root": "/Users/akash/dotfiles/.config/herdr/plugins/github/herdr.scratch-467bcaff7908",
+    "enabled": true,
+    "platforms": [
+      "linux",
+      "macos"
+    ],
+    "build": [
+      {
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"${HERDR_PLUGIN_ROOT:-.}/scripts/install-binary.sh\""
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "doctor",
+        "title": "Check scratch setup",
+        "description": "Validate Herdr Scratch configuration and runtime connectivity.",
+        "contexts": [
+          "global",
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" doctor"
+        ]
+      },
+      {
+        "id": "guide",
+        "title": "Scratch quick start",
+        "description": "Open a visible guide to toggling, hiding, and configuring Scratch.",
+        "contexts": [
+          "global",
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" guide"
+        ]
+      },
+      {
+        "id": "lazygit",
+        "title": "Toggle lazygit",
+        "description": "Open or focus a lazygit scratchpad in the current Herdr context.",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" toggle lazygit -- lazygit"
+        ]
+      },
+      {
+        "id": "list",
+        "title": "List scratchpads",
+        "description": "List known scratchpads.",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" list"
+        ]
+      },
+      {
+        "id": "notes",
+        "title": "Toggle notes",
+        "description": "Open or focus a notes scratchpad.",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" toggle notes"
+        ]
+      },
+      {
+        "id": "open",
+        "title": "Open scratchpad",
+        "description": "Create or show the default scratchpad.",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" open"
+        ]
+      },
+      {
+        "id": "toggle",
+        "title": "Toggle scratchpad",
+        "description": "Show the default scratchpad, or return to the previous Herdr context when it is active.",
+        "contexts": [
+          "workspace",
+          "tab",
+          "pane"
+        ],
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" toggle"
+        ]
+      }
+    ],
+    "panes": [
+      {
+        "id": "guide",
+        "title": "Scratch quick start",
+        "description": "Interactive first-run guide for Scratch.",
+        "placement": "popup",
+        "width": "70%",
+        "height": "60%",
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" guide-pane"
+        ]
+      },
+      {
+        "id": "popup",
+        "title": "Scratch",
+        "description": "Floating scratchpad viewer. Detach with ctrl+b q.",
+        "placement": "popup",
+        "width": "80%",
+        "height": "80%",
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" attach"
+        ]
+      },
+      {
+        "id": "scratch",
+        "title": "Scratch",
+        "description": "Persistent backing scratchpad runtime.",
+        "placement": "overlay",
+        "command": [
+          "/bin/sh",
+          "-c",
+          "exec \"$HERDR_PLUGIN_ROOT/bin/herdr-scratch\" session"
+        ]
+      }
+    ],
+    "source": {
+      "kind": "github",
+      "owner": "AkashJana18",
+      "repo": "herdr-scratch",
+      "requested_ref": "v1.0.1",
+      "resolved_commit": "37473a2cbaf8391f4c2b0d456c779f7271e78720",
+      "managed_path": "/Users/akash/.config/herdr/plugins/github/herdr.scratch-467bcaff7908",
+      "installed_unix_ms": 1786099652341
+    }
+  }
+]

@@ -9,7 +9,7 @@
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
- name = "catppuccin"
+name = "gruvbox"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
@@ -25,6 +25,7 @@
 # red = "#ff6188"
 # green = "#a6e3a1"
 
+auto_switch = false
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -187,6 +188,8 @@
 # accent = "cyan"
 
 # Background notification popup delivery
+show_agent_labels_on_pane_borders = true
+agent_panel_sort = "spaces"
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts

@@ -30,28 +30,27 @@
 # --- Ghostty Configuration 1.2.3 ---
 
 # Theme & Appearance
-theme = niji
-background-opacity = 0.6
-background-blur-radius = 50
+theme = Gruvbox Dark Hard
+background-opacity = 1
 window-colorspace = display-p3
 macos-titlebar-style = hidden
 title = akaverselive
 
 # Optional: makes the padding look uniform on all sides
 window-padding-balance = true 
-background-blur-radius = 20
+# background-blur-radius = 20
 macos-option-as-alt = true
 
 # Window Geometry
 window-width = 40
 window-height = 20
-window-padding-x = 10
-window-padding-y = 10
+window-padding-x = 0
+window-padding-y = 0
 resize-overlay = never
 window-save-state = always
 
 # Font
-font-family = "MesloLGS NF"
+font-family = "Fira Code Nerd Font"
 font-size = 16
 
 # Mouse & Interaction
