@@ -5,19 +5,18 @@ My personal development environment and terminal configuration for macOS.
 ## What's included
 
 | Tool | Theme / Config | Purpose |
-|------|----------------|---------|
+| ------ | ---------------- | --------- |
 | **Neovim** | LazyVim + Catppuccin (Transparent) | Terminal editor. |
 | **Ghostty** | Niji + Powerlevel10k | GPU-accelerated terminal emulator. |
 | **Herdr** | Catppuccin - Default | Terminal multiplexer for AI agents. |
 | **tmux** | Catppuccin | Terminal multiplexer. |
 | **Zsh** | Oh My Zsh | Interactive shell with plugins. |
-| **Powerlevel10k** | Lean preset | Fast, minimal prompt with Git status and developer context. |
-| **Git** | Custom aliases & defaults | Version control and streamlined Git workflow. |
-| **AeroSpace** | Tiling window manager | Keyboard-driven window management on macOS. |
+| **Powerlevel10k** | Lean preset | Fast, minimal prompt with context. |
+| **Git** | Custom aliases & defaults | Version control and Git workflow. |
+| **AeroSpace** | Tiling window manager | Keyboard-driven window management. |
 | **SketchyBar** | Custom | Customizable macOS status bar. |
-| **Yazi** | Catppuccin | Blazing-fast terminal file manager. |
 | **Fastfetch** | Minimal | Display system information on terminal startup. |
-| **btop** | Catppuccin | Interactive system resource monitor. |
+| **btop** | Default | Interactive system resource monitor. |
 
 ## Requirements
 
@@ -96,5 +95,3 @@ stow .
 - Machine-specific files are intentionally excluded.
 - Secrets, SSH keys, API tokens, and history files are **not** tracked.
 - The repository is managed with GNU Stow.
-
-

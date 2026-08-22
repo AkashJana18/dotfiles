@@ -3,7 +3,7 @@
 
 # Show first-run notification setup on startup.
 # Missing also shows onboarding; set false after you've chosen.
- onboarding = false
+onboarding = false
 
 [theme]
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
@@ -77,7 +77,7 @@ auto_switch = false
 # rename_workspace = "prefix+shift+w"
 # close_workspace = "prefix+shift+d"
 # previous_workspace = "" # optional, unset by default
-# next_workspace = ""     # optional, unset by default
+next_workspace = "ctrl+shift+tab"
 # previous_agent = ""     # optional, unset by default
 # next_agent = ""         # optional, unset by default
 # focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
@@ -85,7 +85,7 @@ auto_switch = false
 # new_tab = "prefix+c"
 # rename_tab = "prefix+shift+t"
 # previous_tab = "prefix+p"
-# next_tab = "prefix+n"
+next_tab = "ctrl+tab"
 # switch_tab = "prefix+1..9"
 # switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
 # close_tab = "prefix+shift+x"
@@ -188,7 +188,6 @@ auto_switch = false
 # accent = "cyan"
 
 # Background notification popup delivery
-show_agent_labels_on_pane_borders = true
 agent_panel_sort = "spaces"
 [ui.toast]
 # off = disable pop-up notifications
