@@ -134,9 +134,12 @@ if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace C'
 
 # Ghostty -> Terminal workspace T
+# Ghostty uses macOS native tabs: every tab is exposed as a separate NSWindow,
+# which AeroSpace would tile as a sibling and break the layout.
+# Floating keeps tabs stacked invisibly on the same frame without reflowing tiles.
 [[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
-run = 'move-node-to-workspace T'
+run = ['move-node-to-workspace T', 'layout floating']
 
 # Discord -> Communication workspace D
 [[on-window-detected]]
