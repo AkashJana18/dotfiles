@@ -1,0 +1,31 @@
+# Environment variables
+.env
+.env.*
+
+# Logs
+*.log
+
+# Unix sockets
+*.sock
+
+# Runtime files
+session.json
+
+# opencode runtime files
+.config/opencode/node_modules/
+.config/opencode/package.json
+.config/opencode/package-lock.json
+.config/opencode/bun.lock
+.config/opencode/.gitignore
+.config/opencode/herdr-tui-session.js
+.config/opencode/plugins/
+
+# herdr runtime state & self-managed plugins
+.config/herdr/.gitignore
+.config/herdr/.plugins.lock
+.config/herdr/plugins.json
+.config/herdr/release-notes.json
+.config/herdr/plugins/
+
+# OS files
+.DS_Store

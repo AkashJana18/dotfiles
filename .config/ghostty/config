@@ -62,8 +62,6 @@ confirm-close-surface = false
 # Disables cursor/title control but keeps other features like prompt marking
 shell-integration-features = no-cursor,sudo,no-title
 
-# --- Keybindings ---
-keybind = cmd+a=text:ggVG
 
 # Custom Text Inputs
 # Fixes potential newline issues in some shells
