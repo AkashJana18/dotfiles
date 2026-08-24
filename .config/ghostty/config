@@ -33,8 +33,10 @@
 theme = Gruvbox Dark Hard
 background-opacity = 1
 window-colorspace = display-p3
-macos-titlebar-style = hidden
+macos-titlebar-style = tabs
 title = akaverselive
+custom-shader = ghostty-cursor-shaders/cursor_warp.glsl
+custom-shader-animation = always
 
 # Optional: makes the padding look uniform on all sides
 window-padding-balance = true 
