@@ -35,7 +35,7 @@ background-opacity = 1
 window-colorspace = display-p3
 macos-titlebar-style = tabs
 title = akaverselive
-custom-shader = ghostty-cursor-shaders/cursor_warp.glsl
+custom-shader = shaders/cursor_warp.glsl
 custom-shader-animation = always
 
 # Optional: makes the padding look uniform on all sides
@@ -44,8 +44,6 @@ window-padding-balance = true
 macos-option-as-alt = true
 
 # Window Geometry
-window-width = 40
-window-height = 20
 window-padding-x = 0
 window-padding-y = 0
 resize-overlay = never
