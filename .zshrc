@@ -71,10 +71,6 @@ _fzf_compgen_dir() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-# Alt-C is taken by AeroSpace (workspace C) — rebind fuzzy-cd to Ctrl-F
-bindkey 'f' fzf-alt-c-widget
-bindkey -r '\ec'
-
 # Aliases
 alias nv="nvim"
 alias ala="aerospace list-apps"
@@ -97,3 +93,14 @@ export EZA_CONFIG_DIR="$HOME/dotfiles/eza"
 # zsh-autosuggestions
 [[ -r "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
   source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+
+# Yazi set up
+export EDITOR="nvim"
+
+function y() {
+	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
+	command rm -f -- "$tmp"
+}
