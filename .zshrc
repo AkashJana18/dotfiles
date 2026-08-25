@@ -104,3 +104,7 @@ function y() {
 	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
 	command rm -f -- "$tmp"
 }
+
+
+# zoxide setup
+eval "$(zoxide init zsh --cmd cd)"
