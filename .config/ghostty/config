@@ -37,6 +37,7 @@ macos-titlebar-style = tabs
 title = akaverselive
 custom-shader = shaders/cursor_warp.glsl
 custom-shader-animation = always
+window-decoration = none
 
 # Optional: makes the padding look uniform on all sides
 window-padding-balance = true 
@@ -51,7 +52,7 @@ window-save-state = always
 
 # Font
 font-family = "Fira Code Nerd Font"
-font-size = 16
+font-size = 20
 
 # Mouse & Interaction
 mouse-hide-while-typing = true
@@ -66,3 +67,11 @@ shell-integration-features = no-cursor,sudo,no-title
 # Custom Text Inputs
 # Fixes potential newline issues in some shells
 keybind = shift+enter=text:\n
+
+# Forward cmd chords to herdr's direct (prefix-free) bindings
+keybind = super+b=unbind
+keybind = super+g=unbind
+keybind = super+x=unbind
+keybind = super+t=unbind
+keybind = super+shift+[=unbind
+keybind = super+shift+]=unbind

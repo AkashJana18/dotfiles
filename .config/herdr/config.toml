@@ -70,6 +70,7 @@ auto_switch = false
 # open_notification_target = "prefix+o"
 # workspace_picker = "prefix+w"
 # goto = "prefix+g"
+ goto = ["prefix+g", "cmd+g"]
 # new_workspace = "prefix+shift+n"
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
@@ -83,12 +84,15 @@ next_workspace = "ctrl+shift+tab"
 # focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
 # remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
 # new_tab = "prefix+c"
+ new_tab = ["prefix+c", "cmd+t"]
 # rename_tab = "prefix+shift+t"
 # previous_tab = "prefix+p"
-next_tab = "ctrl+tab"
+ previous_tab = "cmd+shift+["
+next_tab = "cmd+shift+]"
 # switch_tab = "prefix+1..9"
 # switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
 # close_tab = "prefix+shift+x"
+ close_tab = ["prefix+shift+x", "cmd+shift+x"]
 # rename_pane = "prefix+shift+p"
 # edit_scrollback = "prefix+e"
 # focus_pane_left = "prefix+h"
@@ -101,9 +105,11 @@ next_tab = "ctrl+tab"
  split_vertical = "prefix+|"
 # split_horizontal = "prefix+minus"
 # close_pane = "prefix+x"
+ close_pane = ["prefix+x", "cmd+x"]
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
 # toggle_sidebar = "prefix+b"
+ toggle_sidebar = ["prefix+b", "cmd+b"]
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
