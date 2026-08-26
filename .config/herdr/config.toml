@@ -13,9 +13,9 @@ name = "gruvbox"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
-# auto_switch = false
-# dark_name = "catppuccin"
-# light_name = "catppuccin-latte"
+auto_switch = true
+dark_name = "gruvbox"
+light_name = "gruvbox-light"
 
 # Override individual color tokens on top of the base theme.
 # Accepts: hex (#rrggbb), named colors, rgb(r,g,b), or panel_bg = "reset"
@@ -25,7 +25,6 @@ name = "gruvbox"
 # red = "#ff6188"
 # green = "#a6e3a1"
 
-auto_switch = false
 [terminal]
 # Executable used for new interactive panes.
 # Empty means $SHELL, then /bin/sh.
@@ -43,13 +42,13 @@ auto_switch = false
 [update]
 # Update channel used by background version checks and `herdr update`.
 # Use "stable" for normal releases or "preview" for opt-in preview builds.
- channel = "stable"
+channel = "stable"
 
 # Check herdr.dev for new Herdr versions in the background.
- version_check = true
+version_check = true
 
 # Check herdr.dev for remote agent-detection manifest updates in the background.
- manifest_check = true
+manifest_check = true
 
 [keys]
 # Prefix key to enter prefix mode (default: "ctrl+b")
@@ -60,7 +59,7 @@ auto_switch = false
 # Named punctuation such as minus, comma, ampersand, plus, and backtick is also accepted.
 # Most reliable direct bindings are ctrl+letter, function keys, and explicit modified chords.
 # alt+..., cmd/super, and punctuation-with-modifiers may depend on your terminal/tmux setup.
- prefix = "ctrl+a"
+prefix = "ctrl+a"
 
 # Prefix-mode actions
 # help = "prefix+?"
@@ -70,7 +69,7 @@ auto_switch = false
 # open_notification_target = "prefix+o"
 # workspace_picker = "prefix+w"
 # goto = "prefix+g"
- goto = ["prefix+g", "cmd+g"]
+goto = ["prefix+g", "cmd+g"]
 # new_workspace = "prefix+shift+n"
 # new_worktree = "prefix+shift+g"
 # open_worktree = ""    # optional, unset by default
@@ -84,15 +83,15 @@ next_workspace = "ctrl+shift+tab"
 # focus_agent = ""        # optional indexed binding, e.g. "prefix+alt+1..9"
 # remote_image_paste = "ctrl+v" # only active in herdr --remote; empty disables raw-key image paste
 # new_tab = "prefix+c"
- new_tab = ["prefix+c", "cmd+t"]
+new_tab = ["prefix+c", "cmd+t"]
 # rename_tab = "prefix+shift+t"
 # previous_tab = "prefix+p"
- previous_tab = "cmd+shift+["
+previous_tab = "cmd+shift+["
 next_tab = "cmd+shift+]"
 # switch_tab = "prefix+1..9"
 # switch_workspace = ""   # optional indexed binding, e.g. "prefix+shift+1..9"
 # close_tab = "prefix+shift+x"
- close_tab = ["prefix+shift+x", "cmd+shift+x"]
+close_tab = ["prefix+shift+x", "cmd+shift+x"]
 # rename_pane = "prefix+shift+p"
 # edit_scrollback = "prefix+e"
 # focus_pane_left = "prefix+h"
@@ -102,14 +101,14 @@ next_tab = "cmd+shift+]"
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
- split_vertical = "prefix+|"
+split_vertical = "prefix+|"
 # split_horizontal = "prefix+minus"
 # close_pane = "prefix+x"
- close_pane = ["prefix+x", "cmd+x"]
+close_pane = ["prefix+x", "cmd+x"]
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
 # toggle_sidebar = "prefix+b"
- toggle_sidebar = ["prefix+b", "cmd+b"]
+toggle_sidebar = ["prefix+b", "cmd+b"]
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
@@ -183,7 +182,7 @@ next_tab = "cmd+shift+]"
 # pane_gaps = true
 
 # Show detected/reported agent labels in split pane borders when no manual pane name is set.
- show_agent_labels_on_pane_borders = true
+show_agent_labels_on_pane_borders = true
 
 # Agent panel ordering: "spaces" (grouped by space) or "priority" (attention queue).
 # "workspaces" is accepted as an alias for "spaces".
