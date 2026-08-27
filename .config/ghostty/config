@@ -30,7 +30,7 @@
 # --- Ghostty Configuration 1.2.3 ---
 
 # Theme & Appearance
-theme = light:Gruvbox Light Hard,dark:Gruvbox Dark Hard
+theme = Gruvbox Dark Hard
 background-opacity = 1
 window-colorspace = display-p3
 macos-titlebar-style = tabs

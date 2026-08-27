@@ -78,6 +78,7 @@ alias cr="cargo run"
 alias ct="cargo test"
 alias c="cargo"
 alias s="solana"
+alias o="opencode"
 # eza as ls (icons + readability)
 alias ls="eza --group-directories-first --icons=auto --hyperlink"
 alias ll="eza -la --header --git --group-directories-first --icons=auto --time-style=relative --hyperlink"
