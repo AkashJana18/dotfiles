@@ -1,0 +1,157 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+  "logo": {
+    "type": "kitty",
+    "source": "~/.config/fastfetch/okarun.jpg",
+    "width": 35,
+    "padding": {
+      "top": 2,
+      "left": 1,
+      "right": 3,
+    },
+  },
+  "display": {
+    "bar": {
+      "width": 10,
+    },
+  },
+  "modules": [
+    {
+      "type": "custom",
+      "format": "\u001b[90m\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500Hardware\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510",
+    },
+    {
+      "type": "host",
+      "format": "{name}",
+      "key": " \u001b[32m\uf109 PC",
+      "keyColor": "green",
+    },
+    {
+      "type": "cpu",
+      "format": "CPU:  {name} ({cores-physical} cores) @ {freq-max}",
+      "key": "\u2502 \u251c\u001b[32m \uf2db",
+      "keyColor": "green",
+    },
+    {
+      "type": "gpu",
+      "format": "GPU:  {name} ({core-count} cores) @ {frequency}",
+      "key": "\u2502 \u251c\u001b[32m \uf2db",
+      "keyColor": "green",
+    },
+    {
+      "type": "memory",
+      "percent": {
+        "type": 3,
+        "green": 30,
+        "yellow": 80,
+      },
+      "key": "\u2502 \u251c\u001b[32m \uf538 RAM",
+      "keyColor": "green",
+    },
+    {
+      "type": "disk",
+      "percent": {
+        "type": 3,
+        "green": 30,
+        "yellow": 80,
+      },
+      "key": "\u2502 \u251c\u001b[32m \uf0a0 SSD",
+      "keyColor": "green",
+    },
+    {
+      "type": "battery",
+      "temp": true,
+      "percent": {
+        "type": 3,
+        "yellow": 25,
+        "green": 50,
+      },
+      "format": "Power: {capacity} - {temperature}",
+      "key": "\u2514 \u2514\u001b[32m \uf241",
+      "keyColor": "green",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500Software\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510",
+    },
+    {
+      "type": "os",
+      "key": " \u001b[33m\uf17c OS",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "kernel",
+      "format": "Kernel:    {sysname} {release}",
+      "key": "\u2502 \u251c\u001b[33m \uf17c",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "localip",
+      "format": "Local IP:  {ipv4}",
+      "key": "\u2502 \u251c\u001b[33m \uf0ac",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "packages",
+      "format": "Packages:  {brew} (brew), {brew-cask} (brew-cask)",
+      "key": "\u2502 \u251c\u001b[33m \uf1b2",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "shell",
+      "format": "Shell:     {exe-name} {version}",
+      "key": "\u2514 \u2514\u001b[33m \uf120",
+      "keyColor": "yellow",
+    },
+    {
+      "type": "wm",
+      "format": "{pretty-name}{?version} {version}{?}{?plugin-name} (with {plugin-name}){?}",
+      "key": " \u001b[34m\uf108 Desktop",
+      "keyColor": "blue",
+    },
+    {
+      "type": "wmtheme",
+      "format": "Theme:     {result}",
+      "key": "\u2502 \u251c\u001b[34m \uf1fc",
+      "keyColor": "blue",
+    },
+    {
+      "type": "terminal",
+      "format": "Terminal:  Ghostty, Multiplexer: herdr",
+      "key": "\u2502 \u251c\u001b[34m \uf120",
+      "keyColor": "blue",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m\u250c\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500System Status\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510",
+    },
+    {
+      "type": "uptime",
+      "key": " \u001b[35m\uf017 Uptime",
+      "keyColor": "magenta",
+    },
+    {
+      "type": "weather",
+      "timeout": 5000,
+      "location": "Mumbai",
+      "key": " \u001b[35m\uf0c2 Weather",
+      "keyColor": "magenta",
+    },
+    {
+      "type": "custom",
+      "format": "                                          \u001b[38;5;3m\uf06a \u001b[38;5;8m\uf005 \u001b[38;5;7m\uf005 \u001b[38;5;6m\uf005 \u001b[38;5;5m\uf005 \u001b[38;5;4m\uf005 \u001b[38;5;2m\uf005 \u001b[38;5;1m\uf005",
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518",
+    },
+  ],
+}
