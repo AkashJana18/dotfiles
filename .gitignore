@@ -27,5 +27,8 @@ session.json
 .config/herdr/release-notes.json
 .config/herdr/plugins/
 
+# sketchybar compiled helper binary (rebuild via make)
+.config/sketchybar/helper/helper
+
 # OS files
 .DS_Store

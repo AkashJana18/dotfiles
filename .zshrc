@@ -88,9 +88,6 @@ alias lt="eza -a --tree --level=3 --icons=auto --git-ignore --hyperlink"
 # Powerlevel10k config
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
 
-# eza 
-export EZA_CONFIG_DIR="$HOME/dotfiles/eza"
-
 # zsh-autosuggestions
 [[ -r "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
   source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
