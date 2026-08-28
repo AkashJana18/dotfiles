@@ -7,6 +7,14 @@ return {
           explorer = {
             hidden = true,
             ignored = true,
+            -- narrow the explorer window:
+            layout = {
+              preset = "sidebar",
+              layout = {
+                width = 26,
+                min_width = 26,
+              },
+            },
           },
         },
       },
