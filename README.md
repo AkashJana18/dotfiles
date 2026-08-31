@@ -1,6 +1,8 @@
 # Dotfiles
 
 My personal development environment and terminal configuration for macOS.
+<img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/9830a346-81cb-4f77-a34b-96dee64b7d21" />
+
 
 ## What's included
 
@@ -9,7 +11,7 @@ My personal development environment and terminal configuration for macOS.
 | **Neovim** | LazyVim + Gruvbox | Terminal editor |
 | **Ghostty** | Gruvbox Dark Hard | GPU-accelerated terminal emulator |
 | **Herdr** | Gruvbox | Terminal multiplexer for AI agents |
-| **SketchyBar** | Custom (Catppuccin) | Customizable macOS status bar |
+| **SketchyBar** | Custom (Transparent) | Customizable macOS status bar |
 | **AeroSpace** | Tiling window manager | Keyboard-driven window management |
 | **Zsh** | Oh My Zsh + Powerlevel10k | Interactive shell with plugins |
 | **eza** | Gruvbox | Modern `ls` replacement |
