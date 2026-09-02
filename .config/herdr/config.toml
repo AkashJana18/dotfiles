@@ -269,3 +269,46 @@ pane_history = false
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
+
+
+# Added by herdr-scratch setup
+[[keys.command]]
+key = "prefix+p"
+type = "plugin_action"
+command = "herdr.scratch.toggle"
+description = "toggle scratchpad"
+[[keys.command]]
+key = "prefix+shift+p"
+type = "plugin_action"
+command = "herdr.scratch.list"
+description = "list scratchpads"
+[[keys.command]]
+key = "prefix+shift+g"
+type = "plugin_action"
+command = "herdr.scratch.lazygit"
+description = "toggle lazygit scratchpad"
+[[keys.command]]
+key = "prefix+n"
+type = "plugin_action"
+command = "herdr.scratch.notes"
+description = "toggle notes scratchpad"
+[[keys.command]]
+key = "prefix+="
+type = "plugin_action"
+command = "herdr.scratch.size-up"
+description = "grow popup scratchpad"
+[[keys.command]]
+key = "prefix+-"
+type = "plugin_action"
+command = "herdr.scratch.size-down"
+description = "shrink popup scratchpad"
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "herdr.scratch.fullscreen"
+description = "toggle popup fullscreen"
+[[keys.command]]
+key = "prefix+r"
+type = "plugin_action"
+command = "herdr.scratch.reset"
+description = "reset popup scratchpad size"

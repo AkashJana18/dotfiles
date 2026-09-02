@@ -11,54 +11,55 @@ return {
     lazy = false,
     opts = {
       -- gruvbox.nvim options go here (e.g. terminal_colors = true)
+      terminal_colors = true,
     },
   },
 
   -- Make backgrounds transparent. Works with any colorscheme.
-  {
-    "xiyaowong/transparent.nvim",
-    lazy = false,
-    config = function()
-      require("transparent").setup({
-        extra_groups = {
-          "Normal",
-          "NormalNC",
-          "NormalFloat",
-          "FloatTitle",
-
-          "SignColumn",
-          "EndOfBuffer",
-          "LineNr",
-
-          "NeoTreeNormal",
-          "NeoTreeNormalNC",
-          "NeoTreeEndOfBuffer",
-          "NeoTreeFloatNormal",
-
-          "LazyNormal",
-          "LazyButton",
-          "LazyH1",
-          "LazySpecial",
-          "LazyProgressDone",
-          "LazyProgressTodo",
-
-          "MasonNormal",
-          "WhichKeyFloat",
-
-          "TelescopeNormal",
-          "TelescopePromptNormal",
-          "TelescopeResultsNormal",
-          "TelescopePreviewNormal",
-
-          "Pmenu",
-        },
-      })
-
-      require("transparent").clear_prefix("BufferLine")
-      require("transparent").clear_prefix("Lazy")
-      require("transparent").clear_prefix("Mason")
-    end,
-  },
+  -- {
+  --   "xiyaowong/transparent.nvim",
+  --   lazy = false,
+  --   config = function()
+  --     require("transparent").setup({
+  --       extra_groups = {
+  --         "Normal",
+  --         "NormalNC",
+  --         "NormalFloat",
+  --         "FloatTitle",
+  --
+  --         "SignColumn",
+  --         "EndOfBuffer",
+  --         "LineNr",
+  --
+  --         "NeoTreeNormal",
+  --         "NeoTreeNormalNC",
+  --         "NeoTreeEndOfBuffer",
+  --         "NeoTreeFloatNormal",
+  --
+  --         "LazyNormal",
+  --         "LazyButton",
+  --         "LazyH1",
+  --         "LazySpecial",
+  --         "LazyProgressDone",
+  --         "LazyProgressTodo",
+  --
+  --         "MasonNormal",
+  --         "WhichKeyFloat",
+  --
+  --         "TelescopeNormal",
+  --         "TelescopePromptNormal",
+  --         "TelescopeResultsNormal",
+  --         "TelescopePreviewNormal",
+  --
+  --         "Pmenu",
+  --       },
+  --     })
+  --
+  --     require("transparent").clear_prefix("BufferLine")
+  --     require("transparent").clear_prefix("Lazy")
+  --     require("transparent").clear_prefix("Mason")
+  --   end,
+  -- },
 
   {
     "LazyVim/LazyVim",
