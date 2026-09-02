@@ -1,22 +1,22 @@
-local float = {
-  style = "terminal",
-  position = "float",
-  border = "single",
-  width = 0.8,
-  height = 0.8,
-  backdrop = 60,
-  wo = { winhighlight = "Normal:Normal,FloatBorder:FloatBorder" },
-}
-
 return {
   {
     "folke/snacks.nvim",
-    opts = {},
+    opts = {
+      terminal = {
+        win = {
+          style = "terminal", -- resolves to float via Snacks.config.style() terminal.lua:32
+          position = "float",
+          border = "rounded", -- "single"|"double"|"rounded"|"solid"
+          wo = { winhighlight = "Normal:Normal,FloatBorder:FloatBorder" },
+        },
+      },
+    },
     keys = {
+      -- floating cwd / root (you already have <leader>fT/ft, this adds alternative)
       {
         "<c-t>",
         function()
-          Snacks.terminal(nil, { cwd = LazyVim.root(), win = float })
+          Snacks.terminal(nil, { cwd = LazyVim.root() })
         end,
         desc = "Terminal (Root Float)",
         mode = { "n", "t" },
@@ -24,17 +24,19 @@ return {
       {
         "<leader>ft",
         function()
-          Snacks.terminal(nil, { cwd = LazyVim.root(), win = float })
+          Snacks.terminal(nil, { cwd = LazyVim.root() })
         end,
         desc = "Terminal (Root Dir)",
       },
       {
         "<leader>fT",
         function()
-          Snacks.terminal(nil, { win = float })
+          Snacks.terminal()
         end,
         desc = "Terminal (cwd)",
       },
+      -- example dedicated lazygit float
+      -- { "<leader>gg", function() Snacks.terminal("lazygit", { cwd = LazyVim.root.git() }) end, desc = "Lazygit Float" },
     },
   },
 }
