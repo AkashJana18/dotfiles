@@ -22,6 +22,7 @@ brew "tree"
 brew "ripgrep"
 brew "jq"
 brew "yq"
+brew "wakatime-cli"
 
 # Shell
 brew "zsh-autosuggestions"

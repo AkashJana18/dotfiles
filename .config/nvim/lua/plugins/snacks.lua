@@ -2,7 +2,9 @@ return {
   {
     "folke/snacks.nvim",
     opts = {
+      scroll = { enabled = false },
       picker = {
+        layout = { preset = "telescope" },
         sources = {
           explorer = {
             hidden = true,

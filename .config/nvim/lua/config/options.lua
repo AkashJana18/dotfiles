@@ -3,12 +3,3 @@
 -- Add any additional options here
 
 vim.opt.guifont = "FiraCode Nerd Font:h16"
-
-return {
-  {
-    "folke/snacks.nvim",
-    opts = {
-      scroll = { enabled = false },
-    },
-  },
-}

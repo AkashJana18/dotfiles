@@ -18,6 +18,7 @@ session.json
 .config/opencode/bun.lock
 .config/opencode/.gitignore
 .config/opencode/herdr-tui-session.js
+.config/opencode/plugin/
 .config/opencode/plugins/
 
 # herdr runtime state & self-managed plugins

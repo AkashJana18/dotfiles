@@ -6,7 +6,7 @@ return {
         win = {
           style = "terminal", -- resolves to float via Snacks.config.style() terminal.lua:32
           position = "float",
-          border = "rounded", -- "single"|"double"|"rounded"|"solid"
+          border = "single", -- "single"|"double"|"rounded"|"solid"
           wo = { winhighlight = "Normal:Normal,FloatBorder:FloatBorder" },
         },
       },
