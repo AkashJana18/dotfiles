@@ -11,13 +11,9 @@
 # Runtime files
 session.json
 
-# opencode runtime files
+# opencode runtime files (keep package.json for sharing, ignore only generated)
 .config/opencode/node_modules/
-.config/opencode/package.json
-.config/opencode/package-lock.json
 .config/opencode/bun.lock
-.config/opencode/.gitignore
-.config/opencode/herdr-tui-session.js
 .config/opencode/plugin/
 .config/opencode/plugins/
 

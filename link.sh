@@ -33,11 +33,31 @@ link_file "$DOTFILES_DIR/.gitconfig"    "$HOME/.gitconfig"
 link_file "$DOTFILES_DIR/.zshrc"        "$HOME/.zshrc"
 link_file "$DOTFILES_DIR/.p10k.zsh"     "$HOME/.p10k.zsh"
 
-# .config directories
+# .config directories — keep ghostty as dir symlink per preference,
+# but handle stateful dirs (herdr/opencode) file-by-file to avoid
+# polluting the repo with logs/socks/node_modules on sharing
 mkdir -p "$HOME/.config"
 for dir in "$DOTFILES_DIR"/.config/*/; do
   name=$(basename "$dir")
+  case "$name" in
+    herdr|opencode) continue ;;
+  esac
   link_file "$DOTFILES_DIR/.config/$name" "$HOME/.config/$name"
 done
+
+# Stateful dirs — link only shareable config, not runtime state
+mkdir -p "$HOME/.config/herdr"
+link_file "$DOTFILES_DIR/.config/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+
+mkdir -p "$HOME/.config/opencode" "$HOME/.config/opencode/plugin"
+link_file "$DOTFILES_DIR/.config/opencode/opencode.jsonc" "$HOME/.config/opencode/opencode.jsonc"
+link_file "$DOTFILES_DIR/.config/opencode/tui.jsonc" "$HOME/.config/opencode/tui.jsonc"
+link_file "$DOTFILES_DIR/.config/opencode/package.json" "$HOME/.config/opencode/package.json"
+link_file "$DOTFILES_DIR/.config/opencode/package-lock.json" "$HOME/.config/opencode/package-lock.json"
+link_file "$DOTFILES_DIR/.config/opencode/herdr-tui-session.js" "$HOME/.config/opencode/herdr-tui-session.js"
+# plugin dir is small and shareable — link as dir if not already handled
+if [ -d "$DOTFILES_DIR/.config/opencode/plugin" ]; then
+  link_file "$DOTFILES_DIR/.config/opencode/plugin" "$HOME/.config/opencode/plugin"
+fi
 
 info "Done. Restart your terminal or run: exec zsh"

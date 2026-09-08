@@ -40,7 +40,7 @@ custom-shader-animation = always
 window-decoration = none
 
 # Optional: makes the padding look uniform on all sides
-window-padding-balance = true 
+window-padding-balance = false 
 # background-blur-radius = 20
 macos-option-as-alt = true
 
