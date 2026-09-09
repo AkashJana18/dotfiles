@@ -67,13 +67,34 @@ if ! fc-list 2>/dev/null | grep -qi "FiraCode Nerd Font"; then
 fi
 
 # --------------------------------------------------
-# 6. Link dotfiles
+# 6. Rust / rust-analyzer (for Neovim rustaceanvim)
+# --------------------------------------------------
+if command -v rustup &>/dev/null; then
+  for tc in $(rustup toolchain list 2>/dev/null | cut -d' ' -f1); do
+    if ! rustup component list --toolchain "$tc" --installed 2>/dev/null | grep -q "rust-analyzer"; then
+      info "Installing rust-analyzer for $tc..."
+      rustup component add rust-analyzer --toolchain "$tc" && ok "rust-analyzer for $tc installed." || warn "Failed for $tc. Run: rustup component add rust-analyzer --toolchain $tc"
+    fi
+  done
+  # also ensure default toolchain has it (no-op if already installed above)
+  if ! rustup component list --installed 2>/dev/null | grep -q "rust-analyzer"; then
+    info "Installing rust-analyzer via rustup..."
+    rustup component add rust-analyzer && ok "rust-analyzer installed." || warn "Failed to install rust-analyzer. Run: rustup component add rust-analyzer"
+  else
+    ok "rust-analyzer already installed, skipping."
+  fi
+else
+  warn "rustup not found — skipping rust-analyzer. Install rustup: https://rustup.rs"
+fi
+
+# --------------------------------------------------
+# 7. Link dotfiles
 # --------------------------------------------------
 info "Linking dotfiles..."
 bash "$DOTFILES_DIR/link.sh"
 
 # --------------------------------------------------
-# 7. Build sketchybar helper (if source exists, binary is gitignored)
+# 8. Build sketchybar helper (if source exists, binary is gitignored)
 # --------------------------------------------------
 HELPER_DIR="$DOTFILES_DIR/.config/sketchybar/helper"
 if [ -f "$HELPER_DIR/makefile" ] && [ -f "$HELPER_DIR/helper.c" ]; then
