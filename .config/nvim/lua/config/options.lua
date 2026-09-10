@@ -6,3 +6,6 @@ vim.opt.guifont = "FiraCode Nerd Font:h20"
 vim.opt.autoread = true
 vim.opt.cmdheight = 1
 vim.opt.laststatus = 3
+vim.opt.swapfile = false
+vim.opt.winblend = 0
+vim.opt.pumblend = 0

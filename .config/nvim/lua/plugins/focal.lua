@@ -11,7 +11,7 @@ return {
       max_file_size_mb = 5,
     },
     config = function(_, opts)
-      vim.api.nvim_set_hl(0, "FocalFloat", { default = true, bg = "#7c6f64", fg = "#111111" })
+      vim.api.nvim_set_hl(0, "FocalFloat", { default = true, bg = "NONE", fg = "NONE" })
 
       local img = nil
       local tmpfile = nil

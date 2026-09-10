@@ -15,9 +15,4 @@ return {
       contrast = "hard", -- hard/soft or "" for default
     },
   },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    enabled = false,
-  },
 }

@@ -6,3 +6,47 @@
 --
 -- Or remove existing autocmds by their group name (which is prefixed with `lazyvim_` for the defaults)
 -- e.g. vim.api.nvim_del_augroup_by_name("lazyvim_wrap_spell")
+
+-- Global tint disable + border title in borders.lua
+-- Disable ALL bg tints that make floats/diagnostic lines look muddy
+local function _clear_bg(name)
+  local hl = vim.api.nvim_get_hl(0, { name = name, link = false })
+  if hl.bg ~= nil then
+    -- keep all attrs except bg, force transparent
+    local new = {}
+    for k, v in pairs(hl) do
+      if k ~= "bg" then
+        new[k] = v
+      end
+    end
+    new.bg = "NONE"
+    vim.api.nvim_set_hl(0, name, new)
+  end
+end
+
+local function _disable_tint()
+  -- floats: make bg transparent (inherits Normal #1d2021) so no lighter tint
+  vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal" })
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "FloatTitle", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "FocalFloat", { link = "Normal" })
+  vim.api.nvim_set_hl(0, "FocalBorder", { bg = "NONE" })
+  for _, sev in ipairs({ "Error", "Warn", "Info", "Hint", "Ok" }) do
+    _clear_bg("DiagnosticFloating" .. sev)
+    _clear_bg("DiagnosticVirtualText" .. sev)
+    _clear_bg("DiagnosticSign" .. sev)
+  end
+  vim.opt.winblend = 0
+  vim.opt.pumblend = 0
+end
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  pattern = "*",
+  callback = _disable_tint,
+})
+
+-- autocmds.lua itself is loaded on VeryLazy, so the User VeryLazy event that
+-- triggered its load has already fired -- calling directly + defer covers it
+_disable_tint()
+vim.defer_fn(_disable_tint, 100)
+vim.defer_fn(_disable_tint, 500)
