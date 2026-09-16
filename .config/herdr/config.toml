@@ -9,7 +9,7 @@ onboarding = false
 # Built-in themes: catppuccin, terminal, tokyo-night, dracula, nord,
 #                  gruvbox, one-dark, solarized, kanagawa, rose-pine,
 #                  vesper
-name = "gruvbox"
+name = "catppuccin"
 
 # Follow host terminal light/dark appearance and switch Herdr UI themes.
 # Existing manual behavior is unchanged unless this is true.
@@ -203,7 +203,7 @@ status_indicators = "symbols"
 # delivery = "off"
 # delay_seconds = 1
 
-delivery = "herdr"
+delivery = "system"
 [ui.toast.herdr]
 position = "top-right"
 
@@ -315,3 +315,24 @@ key = "prefix+r"
 type = "plugin_action"
 command = "herdr.scratch.reset"
 description = "reset popup scratchpad size"
+
+[theme.custom]
+panel_bg = "#101010"
+sidebar_bg = "#1A1A1A"
+active_row_bg = "#101010"
+selection_bg = "#2E2E2E"
+text = "#EEEEEE"
+subtext0 = "#BDBDBD"
+accent = "#BDBDBD"
+red = "#683d3b"
+green = "#98BD99"
+yellow = "#FFDF9B"
+blue = "#97BDDE"
+mauve = "#A5A6C5"
+teal = "#C6D5CF"
+peach = "#EB99B1"
+surface0 = "#242424"
+surface1 = "#2E2E2E"
+surface_dim = "#0C0C0C"
+overlay0 = "#696969"
+overlay1 = "#DDDDDD"
