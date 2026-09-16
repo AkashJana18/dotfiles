@@ -27,5 +27,10 @@ session.json
 # sketchybar compiled helper binary (rebuild via make)
 .config/sketchybar/helper/helper
 
+# Backup files
+.config/herdr/*.bak-*
+.config/yazi/*.bak-*
+.config/eza/*.bak-*
+
 # OS files
 .DS_Store

@@ -6,6 +6,9 @@ fi
 # Safe base PATH first
 export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
+# Ghostty CLI
+export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
+
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="Powerlevel10k/Powerlevel10k"
