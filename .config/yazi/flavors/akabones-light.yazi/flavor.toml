@@ -1,0 +1,222 @@
+# akabones-light — bone & charcoal, near-monochrome minimal (Yazi flavor)
+# Palette from herdr akabones-light (19 tokens) — no rounded corners, sharp separators only
+# vim:fileencoding=utf-8:foldmethod=marker
+
+# : Manager {{{
+
+[mgr]
+cwd = { fg = "#1A1A1A", bold = true }
+
+# Find
+find_keyword = { fg = "#1A1A1A", bg = "#FFFFFF", bold = true, underline = true }
+find_position = { fg = "#4A5852", bg = "#FFFFFF", bold = true }
+
+# Symlink
+symlink_target = { fg = "#4A5852", italic = true }
+
+# Marker
+marker_copied = { fg = "#FFFFFF", bg = "#4E8073" }
+marker_cut = { fg = "#FFFFFF", bg = "#6D6FA0" }
+marker_marked = { fg = "#FFFFFF", bg = "#3D6D9E" }
+marker_selected = { fg = "#FFFFFF", bg = "#1A1A1A" }
+
+# Count
+count_copied = { fg = "#FFFFFF", bg = "#4E8073" }
+count_cut = { fg = "#FFFFFF", bg = "#6D6FA0" }
+count_selected = { fg = "#FFFFFF", bg = "#1A1A1A" }
+
+# Border — sharp, no rounded
+border_symbol = "│"
+border_style = { fg = "#E7E7E7" }
+# : }}}
+
+
+# : Tabs {{{
+
+[tabs]
+active = { fg = "#FFFFFF", bg = "#4A5852", bold = true }
+inactive = { fg = "#4A5852", bg = "#E7E7E7" }
+
+# Separator — sharp, no powerline curves
+sep_inner = { open = " ", close = " " }
+sep_outer = { open = " ", close = " " }
+
+# : }}}
+
+
+# : Mode {{{
+
+[mode]
+normal_main = { fg = "#FFFFFF", bg = "#4A5852", bold = true }
+normal_alt = { fg = "#4A5852", bg = "#E7E7E7" }
+
+# Select mode
+select_main = { fg = "#FFFFFF", bg = "#C25D7E", bold = true }
+select_alt = { fg = "#4A5852", bg = "#E7E7E7" }
+
+# Unset mode
+unset_main = { fg = "#FFFFFF", bg = "#5E8C5E", bold = true }
+unset_alt = { fg = "#4A5852", bg = "#E7E7E7" }
+
+# : }}}
+
+
+# : Indicator of hovered file {{{
+
+[indicator]
+parent = { fg = "#4A5852", bg = "#FFFFFF", reversed = false }
+current = { fg = "#1A1A1A", bg = "#C9C9C9" }
+preview = { fg = "#4A5852", underline = true }
+padding = { open = " ", close = " " }
+
+# : }}}
+
+
+# : Status {{{
+
+[status]
+overall = { fg = "#4A5852", bg = "#FFFFFF" }
+# No rounded powerline — sharp blocks
+sep_left = { open = " ", close = " " }
+sep_right = { open = " ", close = " " }
+
+# Permissions — monochrome, no color pop
+perm_sep = { fg = "#5A5A5A" }
+perm_type = { fg = "#5A5A5A" }
+perm_read = { fg = "#4A5852" }
+perm_write = { fg = "#4A5852" }
+perm_exec = { fg = "#1A1A1A" }
+
+# Progress
+progress_label = { fg = "#1A1A1A", bold = true }
+progress_normal = { fg = "#5A5A5A", bg = "#FFFFFF" }
+progress_error = { fg = "#683d3b", bg = "#FFFFFF" }
+
+# : }}}
+
+
+# : Which {{{
+
+[which]
+cols = 3
+mask = { bg = "#FFFFFF" }
+cand = { fg = "#1A1A1A" }
+rest = { fg = "#5A5A5A" }
+desc = { fg = "#4A5852" }
+separator = "  "
+separator_style = { fg = "#E7E7E7" }
+
+# : }}}
+
+
+# : Confirmation {{{
+
+[confirm]
+border = { fg = "#E7E7E7" }
+title = { fg = "#1A1A1A", bold = true }
+body = { fg = "#4A5852" }
+list = { fg = "#1A1A1A" }
+btn_yes = { fg = "#FFFFFF", bg = "#1A1A1A" }
+btn_no = { fg = "#4A5852", bg = "#FFFFFF" }
+btn_labels = ["  [Y]es  ", "  (N)o  "]
+
+# : }}}
+
+
+# : Spotter {{{
+
+[spot]
+border = { fg = "#E7E7E7" }
+title = { fg = "#1A1A1A", bold = true }
+
+# Table
+tbl_col = { fg = "#4A5852" }
+tbl_cell = { fg = "#1A1A1A", bg = "#FFFFFF" }
+
+# : }}}
+
+
+# : Notification {{{
+
+[notify]
+title_info = { fg = "#4E8073" }
+title_warn = { fg = "#8C6D1F" }
+title_error = { fg = "#683d3b" }
+
+# : }}}
+
+
+# : Picker {{{
+
+[pick]
+border = { fg = "#E7E7E7" }
+active = { fg = "#1A1A1A", bg = "#C9C9C9", bold = true }
+inactive = { fg = "#4A5852" }
+
+# : }}}
+
+
+# : Input {{{
+
+[input]
+border = { fg = "#E7E7E7" }
+title = { fg = "#1A1A1A" }
+value = { fg = "#1A1A1A" }
+selected = { fg = "#FFFFFF", bg = "#4A5852" }
+
+# : }}}
+
+
+# : Completion {{{
+
+[cmp]
+border = { fg = "#E7E7E7" }
+active = { fg = "#FFFFFF", bg = "#4A5852" }
+inactive = { fg = "#4A5852" }
+
+
+# : Task manager {{{
+
+[tasks]
+border = { fg = "#E7E7E7" }
+title = { fg = "#1A1A1A", bold = true }
+hovered = { fg = "#1A1A1A", underline = true }
+
+# : }}}
+
+
+# : Help {{{
+
+[help]
+on = { fg = "#1A1A1A" }
+run = { fg = "#4A5852" }
+desc = { fg = "#5A5A5A" }
+hovered = { fg = "#FFFFFF", bg = "#4A5852", bold = true }
+footer = { fg = "#FFFFFF", bg = "#4A5852" }
+
+# : }}}
+
+
+# : File-specific styles {{{
+
+[filetype]
+rules = [
+  # Images — muted peach
+  { mime = "image/*", fg = "#C25D7E" },
+
+  # Media — muted yellow
+  { mime = "{audio,video}/*", fg = "#8C6D1F" },
+
+  # Archives — muted red
+  { mime = "application/*zip", fg = "#683d3b" },
+  { mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "#683d3b" },
+
+  # Documents — bone
+  { mime = "application/{pdf,doc,rtf,vnd.*}", fg = "#1A1A1A" },
+
+  # Fallback — bone/grey hierarchy, no saturated colors
+  { url = "*", fg = "#4A5852" },
+  { url = "*/", fg = "#1A1A1A", bold = true },
+]
+
+# : }}}

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>name</key>
+    <string>akabones (Light)</string>
+    <key>author</key>
+    <string>Akash Jana — charcoal &amp; bone minimal (derived from zenbones)</string>
+    <key>colorSpaceName</key>
+    <string>sRGB</string>
+    <key>settings</key>
+    <array>
+      <dict>
+        <key>settings</key>
+        <dict>
+          <key>background</key>
+          <string>#FFFFFF</string>
+          <key>caret</key>
+          <string>#4A5852</string>
+          <key>foreground</key>
+          <string>#1A1A1A</string>
+          <key>invisibles</key>
+          <string>#5A5A5A</string>
+          <key>lineHighlight</key>
+          <string>#E7E7E7</string>
+          <key>selection</key>
+          <string>#C9C9C9</string>
+          <key>inactiveSelection</key>
+          <string>#FFFFFF</string>
+          <key>guide</key>
+          <string>#FFFFFF</string>
+          <key>activeGuide</key>
+          <string>#5A5A5A</string>
+          <key>stackGuide</key>
+          <string>#FFFFFF</string>
+          <key>gutterForeground</key>
+          <string>#5A5A5A</string>
+          <key>highlight</key>
+          <string>#C9C9C9</string>
+          <key>highlightForeground</key>
+          <string>#1A1A1A</string>
+          <key>findHighlight</key>
+          <string>#8C6D1F</string>
+          <key>findHighlightForeground</key>
+          <string>#FFFFFF</string>
+        </dict>
+      </dict>
+      <!-- Base -->
+      <dict>
+        <key>name</key>
+        <string>Text and Source Base Colors</string>
+        <key>scope</key>
+        <string>source, text, none</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#1A1A1A</string>
+        </dict>
+      </dict>
+      <!-- Comments — dim grey -->
+      <dict>
+        <key>name</key>
+        <string>Comments</string>
+        <key>scope</key>
+        <string>comment, punctuation.definition.comment</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#5A5A5A</string>
+          <key>fontStyle</key>
+          <string>italic</string>
+        </dict>
+      </dict>
+      <!-- Keywords — bone -->
+      <dict>
+        <key>name</key>
+        <string>Keywords</string>
+        <key>scope</key>
+        <string>keyword, storage.type, keyword.control</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#1A1A1A</string>
+          <key>fontStyle</key>
+          <string>bold</string>
+        </dict>
+      </dict>
+      <!-- Strings — muted yellow -->
+      <dict>
+        <key>name</key>
+        <string>Strings</string>
+        <key>scope</key>
+        <string>string</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#8C6D1F</string>
+        </dict>
+      </dict>
+      <!-- Constants — muted mauve -->
+      <dict>
+        <key>name</key>
+        <string>Constants</string>
+        <key>scope</key>
+        <string>constant, support.constant</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#6D6FA0</string>
+        </dict>
+      </dict>
+      <!-- Functions — teal -->
+      <dict>
+        <key>name</key>
+        <string>Functions</string>
+        <key>scope</key>
+        <string>entity.name.function, support.function</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#4E8073</string>
+        </dict>
+      </dict>
+      <!-- Variables — blue -->
+      <dict>
+        <key>name</key>
+        <string>Variables</string>
+        <key>scope</key>
+        <string>variable, entity.name.variable</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#3D6D9E</string>
+        </dict>
+      </dict>
+      <!-- Types — peach -->
+      <dict>
+        <key>name</key>
+        <string>Types</string>
+        <key>scope</key>
+        <string>entity.name.type, support.type</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#C25D7E</string>
+        </dict>
+      </dict>
+      <!-- Invalid — muted red bg -->
+      <dict>
+        <key>name</key>
+        <string>Invalid</string>
+        <key>scope</key>
+        <string>invalid</string>
+        <key>settings</key>
+        <dict>
+          <key>foreground</key>
+          <string>#1A1A1A</string>
+          <key>background</key>
+          <string>#683d3b</string>
+        </dict>
+      </dict>
+    </array>
+  </dict>
+</plist>
