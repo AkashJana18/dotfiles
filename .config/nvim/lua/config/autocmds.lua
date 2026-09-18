@@ -31,6 +31,14 @@ local function _disable_tint()
   vim.api.nvim_set_hl(0, "FloatTitle", { bg = "NONE" })
   vim.api.nvim_set_hl(0, "FocalFloat", { link = "Normal" })
   vim.api.nvim_set_hl(0, "FocalBorder", { bg = "NONE" })
+  -- make empty statusline transparent so snacks_dashboard (where lualine is
+  -- disabled via disabled_filetypes) shows no visible bar instead of a solid
+  -- dark strip. Lualine sections keep their own bg, so normal buffers still
+  -- show lualine; only the empty statusline becomes invisible.
+  vim.api.nvim_set_hl(0, "StatusLine", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "StatusLineNC", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "StatusLineTerm", { bg = "NONE" })
+  vim.api.nvim_set_hl(0, "StatusLineTermNC", { bg = "NONE" })
   for _, sev in ipairs({ "Error", "Warn", "Info", "Hint", "Ok" }) do
     _clear_bg("DiagnosticFloating" .. sev)
     _clear_bg("DiagnosticVirtualText" .. sev)
@@ -50,3 +58,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 _disable_tint()
 vim.defer_fn(_disable_tint, 100)
 vim.defer_fn(_disable_tint, 500)
+
+-- Transparent statusline handles the empty bar on snacks_dashboard without
+-- juggling laststatus (which races with LazyVim's lualine VeryLazy restore).
+-- The bar stays at laststatus=3 but becomes invisible when lualine is disabled
+-- (dashboard), while lualine sections still render with their own bg on normal buffers.

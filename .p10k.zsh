@@ -188,8 +188,8 @@
   fi
 
   #################################[ os_icon: os identifier ]##################################
-  # OS identifier color.
-  typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND=
+  # OS identifier color — akabones:  system dim #696969
+  # typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#696969'
   # Custom icon.
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
 
@@ -908,8 +908,8 @@
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND='#BDBDBD'
   # Context color in SSH without privileges.
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND='#EEEEEE'
-  # Default context color (no privileges, no SSH).
-  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND='#EEEEEE'
+  # Default context color (no privileges, no SSH) — akabones: system #696969
+  typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND='#696969'
 
   # Context format when running with privileges: bold user@hostname.
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_TEMPLATE='%B%n@%m'
@@ -1638,10 +1638,10 @@
   #   P9K_WIFI_BARS         | signal strength in bars, from 0 to 4 (derived from P9K_WIFI_RSSI and P9K_WIFI_NOISE)
 
   ####################################[ time: current time ]####################################
-  # Current time color.
-  typeset -g POWERLEVEL9K_TIME_FOREGROUND='#696969'
-  # Format for the current time: 09:51:02. See `man 3 strftime`.
-  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%I:%M:%S %p}'
+  # Current time color — akabones: #EEEEEE for 08:14
+  typeset -g POWERLEVEL9K_TIME_FOREGROUND='#EEEEEE'
+  # Format for the current time: 09:51. See `man 3 strftime`.
+  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M}'
   # If set to true, time will update when you hit enter. This way prompts for the past
   # commands will contain the start times of their commands as opposed to the default
   # behavior where they contain the end times of their preceding commands.
