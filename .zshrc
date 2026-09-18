@@ -109,3 +109,6 @@ function y() {
 
 # zoxide setup
 eval "$(zoxide init zsh --cmd cd)"
+
+# Vim mode in terminal
+bindkey -v

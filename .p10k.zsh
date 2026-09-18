@@ -146,10 +146,10 @@
   # Add an empty line before each prompt.
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-  # Connect left prompt lines with these symbols.
-  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#696969}╭─'
-  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{#696969}├─'
-  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#696969}╰─'
+  # Connect left prompt lines with these symbols — akabones: normal writing #EEEEEE
+  typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#EEEEEE}╭─'
+  typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{#EEEEEE}├─'
+  typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#EEEEEE}╰─'
   # Connect right prompt lines with these symbols.
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_SUFFIX=
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_SUFFIX=
@@ -165,7 +165,7 @@
   # POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=' ' below.
   typeset -g POWERLEVEL9K_SHOW_RULER=false
   typeset -g POWERLEVEL9K_RULER_CHAR='─'        # reasonable alternative: '·'
-  typeset -g POWERLEVEL9K_RULER_FOREGROUND='#696969'
+  typeset -g POWERLEVEL9K_RULER_FOREGROUND='#EEEEEE'
 
   # Filler between left and right prompt on the first prompt line. You can set it to '·' or '─'
   # to make it easier to see the alignment between left and right prompt and to separate prompt
@@ -194,18 +194,19 @@
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
 
   ################################[ prompt_char: prompt symbol ]################################
-  # Green prompt symbol if the last command succeeded.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#EEEEEE'
-  # Red prompt symbol if the last command failed.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND='#EEEEEE'
-  # Default prompt symbol.
+  # ❯ in all modes — white insert, red normal, teal visual, mauve overwrite
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_FOREGROUND='#EEEEEE'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VICMD_FOREGROUND='#683d3b'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIVIS_FOREGROUND='#C6D5CF'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIOWR_FOREGROUND='#A5A6C5'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIINS_FOREGROUND='#EEEEEE'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VICMD_FOREGROUND='#683d3b'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIVIS_FOREGROUND='#C6D5CF'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_ERROR_VIOWR_FOREGROUND='#A5A6C5'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='❯'
-  # Prompt symbol in command vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❮'
-  # Prompt symbol in visual vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='V'
-  # Prompt symbol in overwrite vi mode.
-  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='▶'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VICMD_CONTENT_EXPANSION='❯'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIVIS_CONTENT_EXPANSION='❯'
+  typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIOWR_CONTENT_EXPANSION='❯'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OVERWRITE_STATE=true
   # No line terminator if prompt_char is the last segment.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
@@ -374,12 +375,12 @@
     fi
 
     if (( $1 )); then
-      # Styling for up-to-date Git status.
+      # Styling for up-to-date Git status — akabones: white clean, mauve modified, teal untracked, red conflicted
       local       meta='%f'     # default foreground
-      local      clean='%F{#EEEEEE}'   # green foreground
-      local   modified='%F{#BDBDBD}'  # yellow foreground
-      local  untracked='%F{#EEEEEE}'   # blue foreground
-      local conflicted='%F{#EEEEEE}'  # red foreground
+      local      clean='%F{#EEEEEE}'   # white — akabones insert
+      local   modified='%F{#A5A6C5}'  # mauve — akabones overwrite
+      local  untracked='%F{#C6D5CF}'   # teal — akabones visual
+      local conflicted='%F{#683d3b}'  # red — akabones normal
     else
       # Styling for incomplete and stale Git status.
       local       meta='%F{#696969}'  # grey foreground
@@ -491,8 +492,8 @@
   # Enable counters for staged, unstaged, etc.
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
-  # Icon color.
-  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR='#EEEEEE'
+  # Icon color — akabones: mauve for  github/git icon (statusline) & viowr
+  typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR='#A5A6C5'
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR='#696969'
   # Custom icon.
   # typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_EXPANSION='⭐'
@@ -505,10 +506,11 @@
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
 
   # These settings are used for repositories other than Git or when gitstatusd fails and
-  # Powerlevel10k has to fall back to using vcs_info.
+  # Powerlevel10k has to fall back to using vcs_info — akabones palette
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#EEEEEE'
-  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#EEEEEE'
-  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#BDBDBD'
+  typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#C6D5CF'
+  typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#A5A6C5'
+  typeset -g POWERLEVEL9K_VCS_CONFLICTED_FOREGROUND='#683d3b'
 
   ##########################[ status: exit code of the last command ]###########################
   # Enable OK_PIPE, ERROR_PIPE and ERROR_SIGNAL status states to allow us to enable, disable and
