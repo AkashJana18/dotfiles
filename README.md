@@ -1,7 +1,8 @@
 # Dotfiles
 
 My personal development environment and terminal configuration for macOS.
-<img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/9830a346-81cb-4f77-a34b-96dee64b7d21" />
+
+<img width="700" height="455" alt="wallpaper-neovim-akabone" src="https://github.com/user-attachments/assets/95b0e84b-6a8c-49c9-a95c-ee400fdde937" />
 
 
 ## What's included
@@ -102,3 +103,5 @@ bash link.sh
 - Machine-specific files (apps, keys, local paths) are not tracked.
 - Secrets, SSH keys, API tokens, and history files are **not** tracked.
 - The SketchyBar helper binary is not tracked (rebuild via `make` in `.config/sketchybar/helper/`).
+
+<img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/9830a346-81cb-4f77-a34b-96dee64b7d21" />
