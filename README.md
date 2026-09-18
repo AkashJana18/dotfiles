@@ -2,26 +2,27 @@
 
 My personal development environment and terminal configuration for macOS.
 
-<img width="700" height="455" alt="wallpaper-neovim-akabone" src="https://github.com/user-attachments/assets/95b0e84b-6a8c-49c9-a95c-ee400fdde937" />
-
+<p align="center">
+  <img width="700" height="455" alt="wallpaper-neovim-akabone" src="https://github.com/user-attachments/assets/95b0e84b-6a8c-49c9-a95c-ee400fdde937" />
+</p>
 
 ## What's included
 
 | Tool | Theme / Config | Purpose |
-|------|----------------|---------|
-| **Neovim** | LazyVim + Gruvbox | Terminal editor |
-| **Ghostty** | Gruvbox Dark Hard | GPU-accelerated terminal emulator |
-| **Herdr** | Gruvbox | Terminal multiplexer for AI agents |
+| ------ | ---------------- | --------- |
+| **Neovim** | LazyVim + Zenwritten (stark, transparent) | Terminal editor |
+| **Ghostty** | Zenwritten Dark | GPU-accelerated terminal emulator |
+| **Herdr** | Akabones (zenbones plugin) | Terminal multiplexer for AI agents |
 | **SketchyBar** | Custom (Transparent) | Customizable macOS status bar |
 | **AeroSpace** | Tiling window manager | Keyboard-driven window management |
-| **Zsh** | Oh My Zsh + Powerlevel10k | Interactive shell with plugins |
-| **eza** | Gruvbox | Modern `ls` replacement |
-| **fd** | — | Modern `find` replacement |
-| **bat** | — | Modern `cat` replacement |
-| **fzf** | — | Fuzzy finder |
-| **yazi** | Gruvbox Dark | Terminal file manager |
-| **btop** | — | System resource monitor |
-| **Fastfetch** | Gruvbox | System info display with custom avatar |
+| **Zsh** | Oh My Zsh + Powerlevel10k (akabones) | Interactive shell with plugins |
+| **eza** | Lean · icons (akabones) | Modern `ls` replacement |
+| **fd** | Default | Modern `find` replacement |
+| **bat** | Default | Modern `cat` replacement |
+| **fzf** | Default | Fuzzy finder |
+| **yazi** | Akabones Dark / Light (WIP) | Terminal file manager |
+| **btop** | Default | System resource monitor |
+| **Fastfetch** | Akabones | System info display with custom avatar |
 
 ## Requirements
 
@@ -37,6 +38,7 @@ git clone https://github.com/AkashJana18/dotfiles.git ~/dotfiles && ~/dotfiles/s
 ```
 
 This will:
+
 1. Install Homebrew (if missing)
 2. Install all packages from `Brewfile`
 3. Install Oh My Zsh + Powerlevel10k
@@ -80,15 +82,15 @@ bash link.sh
 ├── .config/
 │   ├── aerospace/      # Tiling window manager
 │   ├── btop/           # System monitor
-│   ├── eza/            # ls replacement theme
-│   ├── fastfetch/      # System info display (Gruvbox)
+│   ├── eza/            # ls replacement (lean, akabones)
+│   ├── fastfetch/      # System info display (akabones)
 │   ├── fd/             # find replacement config
-│   ├── ghostty/        # Terminal emulator (Gruvbox)
-│   ├── herdr/          # AI terminal multiplexer
-│   ├── nvim/           # Neovim (LazyVim + Gruvbox)
+│   ├── ghostty/        # Terminal emulator (Zenwritten Dark)
+│   ├── herdr/          # AI terminal multiplexer (Catppuccin / Akabones)
+│   ├── nvim/           # Neovim (LazyVim + Zenwritten stark)
 │   ├── opencode/       # AI coding assistant
 │   ├── sketchybar/     # macOS status bar
-│   └── yazi/           # File manager (Gruvbox)
+│   └── yazi/           # File manager (Akabones)
 ├── Brewfile            # Homebrew packages
 ├── setup.sh            # One-command install
 ├── link.sh             # Symlink creator
@@ -99,9 +101,7 @@ bash link.sh
 
 ## Notes
 
-- All themes are **Gruvbox** (neovim, ghostty, herdr, eza, yazi).
+- All themes are **Akabones / Zenwritten** (nvim + ghostty: Zenwritten stark; yazi/p10k/herdr: Akabones).
 - Machine-specific files (apps, keys, local paths) are not tracked.
 - Secrets, SSH keys, API tokens, and history files are **not** tracked.
 - The SketchyBar helper binary is not tracked (rebuild via `make` in `.config/sketchybar/helper/`).
-
-<img width="1470" height="956" alt="image" src="https://github.com/user-attachments/assets/9830a346-81cb-4f77-a34b-96dee64b7d21" />

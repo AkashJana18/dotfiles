@@ -1640,8 +1640,8 @@
   ####################################[ time: current time ]####################################
   # Current time color — akabones: #EEEEEE for 08:14
   typeset -g POWERLEVEL9K_TIME_FOREGROUND='#EEEEEE'
-  # Format for the current time: 09:51. See `man 3 strftime`.
-  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%H:%M}'
+  # Format for the current time: 9:51 (no leading zero). See `man 3 strftime`.
+  typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%-H:%M}'
   # If set to true, time will update when you hit enter. This way prompts for the past
   # commands will contain the start times of their commands as opposed to the default
   # behavior where they contain the end times of their preceding commands.
