@@ -31,17 +31,15 @@
 
 # Theme & Appearance
 theme = Zenwritten Dark
-background-opacity = 1
+background-opacity = 0.7
+background-blur-radius = 50
 window-colorspace = display-p3
-macos-titlebar-style = tabs
-title = akaverselive
 custom-shader = shaders/cursor_warp.glsl
 custom-shader-animation = always
 window-decoration = none
 
 # Optional: makes the padding look uniform on all sides
 window-padding-balance = false 
-# background-blur-radius = 20
 macos-option-as-alt = true
 
 # Window Geometry

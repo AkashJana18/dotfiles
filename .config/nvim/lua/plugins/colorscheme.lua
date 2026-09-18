@@ -5,18 +5,6 @@ return {
       colorscheme = "zenwritten",
     },
   },
-
-  {
-    "ellisonleao/gruvbox.nvim",
-    name = "gruvbox",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      terminal_colors = true,
-      contrast = "hard", -- hard/soft or "" for default
-    },
-  },
-
   {
     "zenbones-theme/zenbones.nvim",
     -- Optionally install Lush. Allows for more configuration or extending the colorscheme
@@ -29,8 +17,9 @@ return {
     config = function()
       vim.g.zenbones_darken_comments = 45
       vim.o.background = "dark" -- required for darkness to apply
-      vim.g.zenwritten_darkness = "warm" -- stark or "warm"
+      vim.g.zenwritten_darkness = "stark" -- stark or "warm"
       vim.g.zenwritten_lightness = "dim" -- bright or dim only if background=light
+      vim.g.zenwritten_transparent_background = true
       vim.cmd.colorscheme("zenwritten")
     end,
   },
