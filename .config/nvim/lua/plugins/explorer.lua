@@ -5,8 +5,8 @@ return {
       picker = {
         sources = {
           explorer = {
-            hidden = true,
-            ignored = true,
+            hidden = false,
+            ignored = false,
             -- narrow the explorer window:
             layout = {
               preset = "sidebar",
@@ -20,15 +20,16 @@ return {
       },
     },
     -- init = function()
+    --   local function undim()
+    --     vim.api.nvim_set_hl(0, "SnacksPickerPathHidden", { link = "Normal" })
+    --     vim.api.nvim_set_hl(0, "SnacksPickerPathIgnored", { link = "Normal" })
+    --   end
     --   vim.api.nvim_create_autocmd("ColorScheme", {
-    --     callback = function()
-    --       -- Clear the specific faded highlights back to regular text behavior
-    --       vim.api.nvim_set_hl(0, "SnacksPickerPathIgnored", { link = "Normal" })
-    --       vim.api.nvim_set_hl(0, "SnacksPickerDirIgnored", { link = "Normal" })
-    --       vim.api.nvim_set_hl(0, "NvimTreeGitIgnored", { link = "Normal" })
-    --       vim.api.nvim_set_hl(0, "NeoTreeGitIgnored", { link = "Normal" })
-    --     end,
+    --     pattern = "*",
+    --     callback = undim,
     --   })
+    --   undim()
+    --   vim.defer_fn(undim, 100)
     -- end,
   },
 }
