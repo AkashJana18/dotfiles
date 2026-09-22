@@ -23,6 +23,8 @@ session.json
 .config/herdr/plugins.json
 .config/herdr/release-notes.json
 .config/herdr/plugins/
+.config/opencode/herdr-tui-session.js
+.config/opencode/herdr-opencode/
 
 # sketchybar compiled helper binary (rebuild via make)
 .config/sketchybar/helper/helper
