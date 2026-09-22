@@ -3,7 +3,7 @@
 # Theme & Appearance
 theme = Zenwritten Dark
 background = #000000
-foreground = #EEEEEE
+# foreground = #EEEEEE
 background-opacity = 0.6
 background-blur-radius = 50
 window-colorspace = display-p3
