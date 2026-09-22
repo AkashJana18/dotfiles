@@ -15,7 +15,7 @@ return {
     priority = 1000,
     -- you can set set configuration options here
     config = function()
-      vim.g.zenbones_darken_comments = 45
+      -- vim.g.zenbones_darken_comments = 45
       vim.o.background = "dark" -- required for darkness to apply
       vim.g.zenwritten_darkness = "stark" -- stark or "warm"
       vim.g.zenwritten_lightness = "dim" -- bright or dim only if background=light
