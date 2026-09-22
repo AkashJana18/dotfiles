@@ -5,12 +5,6 @@ return {
       scroll = { enabled = false },
       picker = {
         layout = { preset = "telescope" },
-        sources = {
-          explorer = {
-            hidden = true,
-            ignored = true,
-          },
-        },
       },
     },
     keys = {
