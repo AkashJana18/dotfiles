@@ -110,6 +110,19 @@ return {
       { "diagnostics" },
     }
 
+    -- opencode: show connected server + status (idle/busy/error)
+    opts.sections.lualine_x = opts.sections.lualine_x or {}
+    table.insert(opts.sections.lualine_x, {
+      function()
+        local ok, oc = pcall(require, "opencode")
+        if not ok or not oc.statusline then
+          return ""
+        end
+        local ok2, res = pcall(oc.statusline)
+        return ok2 and res or ""
+      end,
+    })
+
     return opts
   end,
 }

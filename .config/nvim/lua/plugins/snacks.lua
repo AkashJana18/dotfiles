@@ -3,6 +3,7 @@ return {
     "folke/snacks.nvim",
     opts = {
       scroll = { enabled = false },
+      input = { enabled = true }, -- Enhances opencode Ask
       picker = {
         layout = { preset = "telescope" },
       },
