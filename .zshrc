@@ -4,7 +4,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # Safe base PATH first
-export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 # Ghostty CLI
 export PATH="/Applications/Ghostty.app/Contents/MacOS:$PATH"
@@ -34,13 +34,6 @@ if [[ -s "$NVM_DIR/nvm.sh" ]]; then
   npm()  { _load_nvm; npm "$@"; }
   npx()  { _load_nvm; npx "$@"; }
 fi
-
-# pnpm
-export PNPM_HOME="$HOME/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
 
 # bun
 export BUN_INSTALL="$HOME/.bun"
@@ -112,3 +105,10 @@ eval "$(zoxide init zsh --cmd cd)"
 
 # Vim mode in terminal
 bindkey -v
+
+# zsh-syntax-highlighting
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#EEEEEE'
+export PATH="/Users/akash/.local/bin:$PATH"
+export PATH="/opt/homebrew/Caskroom/claude-code/2.1.267:$PATH"
