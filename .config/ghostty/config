@@ -4,7 +4,7 @@
 theme = Zenwritten Dark
 background = #000000
 # foreground = #EEEEEE
-background-opacity = 0.6
+background-opacity = 0.4
 background-blur-radius = 50
 window-colorspace = display-p3
 custom-shader = shaders/cursor_warp.glsl
