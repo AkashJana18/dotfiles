@@ -98,10 +98,8 @@ close_tab = ["prefix+shift+x", "cmd+shift+x"]
 # focus_pane_down = "prefix+j"
 # focus_pane_up = "prefix+k"
 # focus_pane_right = "prefix+l"
-focus_pane_left = "ctrl+h"
-focus_pane_down = "ctrl+j"
-focus_pane_up = "ctrl+k"
-focus_pane_right = "ctrl+l"
+# (pane navigation on ctrl+hjkl is handled by herdr-nvim-nav plugin actions below,
+# so plain focus_pane_* stays unset to avoid intercepting the chord)
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
@@ -111,6 +109,25 @@ close_pane = ["prefix+x", "cmd+x"]
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
 toggle_sidebar = ["prefix+b", "cmd+b"]
+
+# Seamless ctrl+hjkl across herdr panes and Neovim splits (herdr-nvim-nav):
+# forwards the chord to Neovim when it owns the pane, else moves pane focus.
+[[keys.command]]
+key = "ctrl+h"
+type = "plugin_action"
+command = "herdr-nvim-nav.left"
+[[keys.command]]
+key = "ctrl+j"
+type = "plugin_action"
+command = "herdr-nvim-nav.down"
+[[keys.command]]
+key = "ctrl+k"
+type = "plugin_action"
+command = "herdr-nvim-nav.up"
+[[keys.command]]
+key = "ctrl+l"
+type = "plugin_action"
+command = "herdr-nvim-nav.right"
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
 # They are independent from focus_pane_*. Do not include prefix+, esc, enter, tab, or 1..9 here.
