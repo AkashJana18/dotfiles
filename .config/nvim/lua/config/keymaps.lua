@@ -41,3 +41,8 @@ vim.keymap.set("n", "ef", function()
   vim.diagnostic.setqflist()
   vim.cmd("copen")
 end, { desc = "Diagnostics → quickfix" })
+
+vim.keymap.set("n", "<leader>ev", function()
+  local vt = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not vt })
+end, { desc = "Toggle diagnostic virtual text" })
