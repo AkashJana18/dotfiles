@@ -1,4 +1,7 @@
 return {
+  -- NOTE: vim.o.winborder="rounded" (options.lua, 0.12 native) is the global
+  -- fallback for hover/signatureHelp/diagnostics. Below keeps LazyVim-specific
+  -- extras winborder can't express: float title/source/scope/max_width + noice docs.
   -- 1. Diagnostic floating window: add rounded border + beautify
   --    (your screenshot: Diagnostics: ... had no border)
   {

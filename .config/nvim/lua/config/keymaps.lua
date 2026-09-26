@@ -42,7 +42,36 @@ vim.keymap.set("n", "ef", function()
   vim.cmd("copen")
 end, { desc = "Diagnostics → quickfix" })
 
-vim.keymap.set("n", "<leader>ev", function()
+vim.keymap.set("n", "<leader>xa", function()
   local vt = vim.diagnostic.config().virtual_text
   vim.diagnostic.config({ virtual_text = not vt })
 end, { desc = "Toggle diagnostic virtual text" })
+
+-- 0.12 natives: opt-in plugins ship under pack/dist/opt, packadd once so
+-- :Undotree / :DiffTool are always available (:lsp is builtin, no packadd needed).
+pcall(vim.cmd.packadd, "nvim.undotree")
+pcall(vim.cmd.packadd, "nvim.difftool")
+
+vim.keymap.set("n", "<leader>fu", function()
+  -- packadd here (not just top-level) so the map works even if startup-time
+  -- packadd was skipped or failed; cheap and idempotent after first load.
+  vim.cmd.packadd("nvim.undotree")
+  vim.cmd.Undotree()
+end, { desc = "Undo tree (native 0.12)" })
+vim.keymap.set("n", "<leader>fD", function()
+  vim.cmd.packadd("nvim.difftool")
+  local left = vim.fn.input("DiffTool left: ", "", "file")
+  if left == "" then
+    return
+  end
+  local right = vim.fn.input("DiffTool right: ", "", "file")
+  if right == "" then
+    return
+  end
+  vim.cmd("DiffTool " .. vim.fn.fnameescape(left) .. " " .. vim.fn.fnameescape(right))
+end, { desc = "DiffTool (native 0.12)" })
+-- Bare :lsp needs a subcommand (enable|disable|restart|stop), so this map goes
+-- to the informative view instead: per-buffer LSP features + clients.
+vim.keymap.set("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP status (native health)" })
+-- Native defaults worth knowing (no mapping needed): v_an/v_in treesitter or
+-- LSP selectionRange, grt type-definition, grx codelens-run, gx documentLink.

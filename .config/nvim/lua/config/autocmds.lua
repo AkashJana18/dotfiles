@@ -63,3 +63,23 @@ vim.defer_fn(_disable_tint, 500)
 -- juggling laststatus (which races with LazyVim's lualine VeryLazy restore).
 -- The bar stays at laststatus=3 but becomes invisible when lualine is disabled
 -- (dashboard), while lualine sections still render with their own bg on normal buffers.
+
+-- Neovim 0.12 natives: linkedEditingRange (paired-tag rename, e.g. JSX via
+-- vtsls) and onTypeFormatting are server capabilities that stay off unless
+-- explicitly enabled. Enable per-client on attach when supported. Guarded so a
+-- server lacking the method (or a future API change) can't break startup.
+vim.api.nvim_create_autocmd("LspAttach", {
+  group = vim.api.nvim_create_augroup("dotfiles_native_lsp_features", { clear = true }),
+  callback = function(ev)
+    local client = vim.lsp.get_client_by_id(ev.data.client_id)
+    if not client then
+      return
+    end
+    if client:supports_method("textDocument/linkedEditingRange") then
+      pcall(vim.lsp.linked_editing_range.enable, true, { client_id = client.id })
+    end
+    if client:supports_method("textDocument/onTypeFormatting") then
+      pcall(vim.lsp.on_type_formatting.enable, true, { client_id = client.id })
+    end
+  end,
+})
