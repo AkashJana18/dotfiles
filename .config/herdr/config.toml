@@ -98,16 +98,18 @@ close_tab = ["prefix+shift+x", "cmd+shift+x"]
 # focus_pane_down = "prefix+j"
 # focus_pane_up = "prefix+k"
 # focus_pane_right = "prefix+l"
+focus_pane_left = "ctrl+h"
+focus_pane_down = "ctrl+j"
+focus_pane_up = "ctrl+k"
+focus_pane_right = "ctrl+l"
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
 split_vertical = "prefix+|"
-# split_horizontal = "prefix+minus"
-# close_pane = "prefix+x"
+split_horizontal = "prefix+minus"
 close_pane = ["prefix+x", "cmd+x"]
 # zoom = "prefix+z"       # legacy alias: fullscreen
 # resize_mode = "prefix+r"
-# toggle_sidebar = "prefix+b"
 toggle_sidebar = ["prefix+b", "cmd+b"]
 
 # Navigate-mode movement. These local shortcuts win while navigate mode is open.
