@@ -75,3 +75,12 @@ end, { desc = "DiffTool (native 0.12)" })
 vim.keymap.set("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP status (native health)" })
 -- Native defaults worth knowing (no mapping needed): v_an/v_in treesitter or
 -- LSP selectionRange, grt type-definition, grx codelens-run, gx documentLink.
+
+-- Headless one-line code explanations: no opencode UI, comment inserted inline.
+-- Reuses one opencode session per project (see lua/opencode-comment.lua).
+vim.keymap.set("x", "<leader>ce", function()
+  require("opencode-comment").explain()
+end, { desc = "Explain selection as comment" })
+vim.api.nvim_create_user_command("OpencodeCommentNewSession", function()
+  require("opencode-comment").new_session()
+end, { desc = "Reset opencode-comment session for this project" })
