@@ -1,0 +1,71 @@
+##############################################
+#                                            #
+#            Akabones Light Theme            #
+#         (bone & charcoal, near-monochrome)  #
+#                                            #
+##############################################
+
+# Ported from the zenbones akabones-light palette.
+
+###############################################################################
+#                           Code Syntax Highlighting                          #
+###############################################################################
+
+code_syntax_highlight = "bw"
+
+###############################################################################
+#                                 Base Colors                                 #
+###############################################################################
+
+#-- Full Screen
+full_screen_fg = "#1A1A1A"
+full_screen_bg = "#FFFFFF"
+
+#-- Gradient
+gradient_color = ["#6D6FA0", "#4E8073"]
+
+#-- File Panel
+file_panel_fg = "#1A1A1A"
+file_panel_bg = "#FFFFFF"
+file_panel_border = "#EEEEEE"
+file_panel_border_active = "#8C8C8C"
+file_panel_top_directory_icon = "#5E8C5E"
+file_panel_top_path = "#3D6D9E"
+file_panel_item_selected_fg = "#1A1A1A"
+file_panel_item_selected_bg = "#C9C9C9"
+
+#-- Footer
+footer_fg = "#4A5852"
+footer_bg = "#FFFFFF"
+footer_border = "#EEEEEE"
+footer_border_active = "#8C8C8C"
+
+#-- Sidebar
+sidebar_fg = "#1A1A1A"
+sidebar_bg = "#E7E7E7"
+sidebar_title = "#6D6FA0"
+sidebar_border = "#EEEEEE"
+sidebar_border_active = "#8C8C8C"
+sidebar_item_selected_fg = "#1A1A1A"
+sidebar_item_selected_bg = "#C9C9C9"
+sidebar_divider = "#EEEEEE"
+
+#-- Modals
+modal_fg = "#1A1A1A"
+modal_bg = "#C9C9C9"
+modal_border_active = "#8C8C8C"
+modal_cancel_fg = "#FFFFFF"
+modal_cancel_bg = "#683d3b"
+modal_confirm_fg = "#FFFFFF"
+modal_confirm_bg = "#5E8C5E"
+
+#-- Help Menu
+help_menu_hotkey = "#4E8073"
+help_menu_title = "#C25D7E"
+
+#-- Special
+cursor = "#1A1A1A"
+correct = "#5E8C5E"
+error = "#683d3b"
+hint = "#3D6D9E"
+cancel = "#8C6D1F"

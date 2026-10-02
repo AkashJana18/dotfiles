@@ -1,0 +1,73 @@
+##############################################
+#                                            #
+#            Akabones Dark Theme             #
+#         (charcoal & bone, near-monochrome)  #
+#                                            #
+##############################################
+
+# Ported from the zenbones akabones-dark palette, which is mirrored in
+# .config/herdr/config.toml under [theme.custom] so it survives even though the
+# zenbones herdr plugin directory is gitignored.
+
+###############################################################################
+#                           Code Syntax Highlighting                          #
+###############################################################################
+
+code_syntax_highlight = "bw"
+
+###############################################################################
+#                                 Base Colors                                 #
+###############################################################################
+
+#-- Full Screen
+full_screen_fg = "#EEEEEE"
+full_screen_bg = "#101010"
+
+#-- Gradient
+gradient_color = ["#A5A6C5", "#C6D5CF"]
+
+#-- File Panel
+file_panel_fg = "#EEEEEE"
+file_panel_bg = "#101010"
+file_panel_border = "#242424"
+file_panel_border_active = "#BDBDBD"
+file_panel_top_directory_icon = "#98BD99"
+file_panel_top_path = "#97BDDE"
+file_panel_item_selected_fg = "#EEEEEE"
+file_panel_item_selected_bg = "#2E2E2E"
+
+#-- Footer
+footer_fg = "#BDBDBD"
+footer_bg = "#101010"
+footer_border = "#242424"
+footer_border_active = "#BDBDBD"
+
+#-- Sidebar
+sidebar_fg = "#EEEEEE"
+sidebar_bg = "#1A1A1A"
+sidebar_title = "#A5A6C5"
+sidebar_border = "#242424"
+sidebar_border_active = "#BDBDBD"
+sidebar_item_selected_fg = "#EEEEEE"
+sidebar_item_selected_bg = "#2E2E2E"
+sidebar_divider = "#242424"
+
+#-- Modals
+modal_fg = "#EEEEEE"
+modal_bg = "#2E2E2E"
+modal_border_active = "#BDBDBD"
+modal_cancel_fg = "#101010"
+modal_cancel_bg = "#683d3b"
+modal_confirm_fg = "#101010"
+modal_confirm_bg = "#98BD99"
+
+#-- Help Menu
+help_menu_hotkey = "#C6D5CF"
+help_menu_title = "#EB99B1"
+
+#-- Special
+cursor = "#EEEEEE"
+correct = "#98BD99"
+error = "#683d3b"
+hint = "#97BDDE"
+cancel = "#FFDF9B"

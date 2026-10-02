@@ -46,12 +46,13 @@ link_file "$DOTFILES_DIR/.p10k.zsh"     "$HOME/.p10k.zsh"
 
 # .config directories — keep ghostty as dir symlink per preference,
 # but handle stateful dirs (herdr/opencode) file-by-file to avoid
-# polluting the repo with logs/socks/node_modules on sharing
+# polluting the repo with logs/socks/node_modules on sharing.
+# superfile is skipped here because it does not read ~/.config at all.
 mkdir -p "$HOME/.config"
 for dir in "$DOTFILES_DIR"/.config/*/; do
   name=$(basename "$dir")
   case "$name" in
-    herdr|opencode) continue ;;
+    herdr|opencode|superfile) continue ;;
   esac
   link_file "$DOTFILES_DIR/.config/$name" "$HOME/.config/$name"
 done
@@ -78,5 +79,24 @@ for pdir in plugin plugins; do
     link_file "$DOTFILES_DIR/.config/opencode/$pdir" "$HOME/.config/opencode/$pdir"
   fi
 done
+
+# superfile keeps its config in ~/Library/Application Support/superfile (Go's
+# os.UserConfigDir), not ~/.config — so the loop above cannot reach it. Link the
+# shareable files individually and leave runtime state (pinned.json, logs,
+# firstUseCheck, toggle*) local. Theme files are linked individually rather than
+# the whole theme/ dir, so superfile's bundled themes stay available.
+SPF_DIR="$HOME/Library/Application Support/superfile"
+if [ -d "$DOTFILES_DIR/.config/superfile" ]; then
+  mkdir -p "$SPF_DIR/theme"
+  for spf_file in config.toml hotkeys.toml; do
+    if [ -e "$DOTFILES_DIR/.config/superfile/$spf_file" ]; then
+      link_file "$DOTFILES_DIR/.config/superfile/$spf_file" "$SPF_DIR/$spf_file"
+    fi
+  done
+  for spf_theme in "$DOTFILES_DIR"/.config/superfile/theme/*.toml; do
+    [ -e "$spf_theme" ] || continue
+    link_file "$spf_theme" "$SPF_DIR/theme/$(basename "$spf_theme")"
+  done
+fi
 
 info "Done. Restart your terminal or run: exec zsh"
