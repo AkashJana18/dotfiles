@@ -106,9 +106,16 @@ close_tab = ["prefix+shift+x", "cmd+shift+x"]
 split_vertical = "prefix+|"
 split_horizontal = "prefix+minus"
 close_pane = ["prefix+x", "cmd+x"]
-# zoom = "prefix+z"       # legacy alias: fullscreen
+zoom = "" # unbound: prefix+z opens the Zenbones theme picker instead (see below)
 # resize_mode = "prefix+r"
 toggle_sidebar = ["prefix+b", "cmd+b"]
+
+# Zenbones theme picker on prefix+z (plugin action id: zenbones.open).
+[[keys.command]]
+key = "prefix+z"
+type = "plugin_action"
+command = "zenbones.open"
+description = "Zenbones theme picker"
 
 # Seamless ctrl+hjkl across herdr panes and Neovim splits (herdr-nvim-nav):
 # forwards the chord to Neovim when it owns the pane, else moves pane focus.
@@ -213,7 +220,12 @@ show_agent_labels_on_pane_borders = true
 
 # Background notification popup delivery
 agent_panel_sort = "spaces"
-status_indicators = "symbols"
+status_indicators = "dots"
+
+# Hide branch + git_status rows in sidebar Spaces panel (workspace names only)
+[ui.sidebar.spaces]
+rows = [["state_icon", "workspace"]]
+
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
@@ -222,7 +234,7 @@ status_indicators = "symbols"
 # delivery = "off"
 # delay_seconds = 1
 
-delivery = "terminal"
+delivery = "herdr"
 [ui.toast.herdr]
 position = "top-right"
 
@@ -261,7 +273,7 @@ enabled = true
 
 [experimental]
 # Allow launching herdr from inside a herdr-managed pane.
-# allow_nested = false
+allow_nested = false
 # Experimental local Kitty graphics rendering for attached clients.
 # Requires a Kitty graphics-compatible outer terminal.
 kitty_graphics = true

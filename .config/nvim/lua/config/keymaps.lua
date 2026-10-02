@@ -78,9 +78,14 @@ vim.keymap.set("n", "<leader>cl", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP 
 
 -- Headless one-line code explanations: no opencode UI, comment inserted inline.
 -- Reuses one opencode session per project (see lua/opencode-comment.lua).
-vim.keymap.set("x", "<leader>ce", function()
-  require("opencode-comment").explain()
-end, { desc = "Explain selection as comment" })
+-- Separate maps: x-mode callbacks run after visual is exited, so mode()
+-- can't tell them apart -- dispatch explicitly instead.
+vim.keymap.set("n", "<leader>oc", function()
+  require("opencode-comment").explain_line()
+end, { desc = "Explain line as comment" })
+vim.keymap.set("x", "<leader>oc", function()
+  require("opencode-comment").explain_visual()
+end, { desc = "Explain lines as comments" })
 vim.api.nvim_create_user_command("OpencodeCommentNewSession", function()
   require("opencode-comment").new_session()
 end, { desc = "Reset opencode-comment session for this project" })

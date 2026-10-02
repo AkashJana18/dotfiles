@@ -24,12 +24,32 @@ return {
       },
     },
   },
-  -- 2. Hover / signatureHelp border via noice (LazyVim uses noice for lsp docs)
+  -- 2. hover border via noice (signaturehelp moved to blink.cmp below so the
+  -- express overload float stays compact and doesn't cover the line being typed)
   {
     "folke/noice.nvim",
     opts = {
       presets = {
         lsp_doc_border = true,
+      },
+      lsp = {
+        signature = { enabled = false },
+      },
+    },
+  },
+  -- 3. compact signature-help via blink.cmp (single active signature, tries
+  -- above cursor first, scrolls instead of growing to 20x120 like noice)
+  {
+    "saghen/blink.cmp",
+    opts = {
+      signature = {
+        enabled = true,
+        window = {
+          -- max_width = 60,
+          -- max_height = 10,
+          show_documentation = true,
+          direction_priority = { "n", "s" },
+        },
       },
     },
   },

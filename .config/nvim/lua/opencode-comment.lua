@@ -1,7 +1,7 @@
 -- Headless one-line code explanations via `opencode run`.
--- Visual-select code, get a short phrase back, inserted as a comment:
--- trailing beside the code when it fits, otherwise a line above.
--- Reuses one dedicated opencode session per project directory.
+-- Visual-select lines (or current line in normal mode), get one short phrase
+-- per line back, inserted as comments: trailing beside the code when it fits,
+-- otherwise a line above. Reuses one dedicated opencode session per project.
 local M = {}
 
 local STATE_FILE = vim.fn.stdpath("data") .. "/opencode-comment/sessions.json"
@@ -112,14 +112,18 @@ local function project_dir(bufnr)
   return vim.fn.getcwd()
 end
 
-local PROMPT_INSTRUCTIONS = table.concat({
-  "Explain the following code in one very short phrase (max 10 words),",
-  "suitable as an end-of-line code comment.",
-  "Rules: output ONLY the phrase. No quotes, no code fences, no trailing",
-  "period, no tools, no other text.",
-  "",
-  "",
-}, "\n")
+local function prompt_instructions(n)
+  return table.concat({
+    string.format("Explain EACH of the following %d code lines (numbered 1-%d below).", n, n),
+    "For every line, write one very short phrase (max 10 words) suitable as an",
+    "end-of-line code comment.",
+    "Rules: output EXACTLY the numbered lines, in order, format `i. phrase`",
+    "(e.g. `3. opens the config file`). No quotes, no code fences, no trailing",
+    "periods, no tools, no other text, no blank lines between them.",
+    "",
+    "",
+  }, "\n")
+end
 
 ---@param text string
 local function notify(text, level)
@@ -136,7 +140,7 @@ local function run_explain(opts)
     table.insert(argv, "--model")
     table.insert(argv, vim.g.opencode_comment_model)
   end
-  table.insert(argv, PROMPT_INSTRUCTIONS .. opts.snippet)
+  table.insert(argv, prompt_instructions(opts.n) .. opts.snippet)
 
   vim.system(argv, { text = true, timeout = TIMEOUT_MS }, function(res)
     vim.schedule(function()
@@ -164,77 +168,105 @@ function M.parse_run_output(stdout)
   return session_id, table.concat(chunks)
 end
 
-local function apply_comment(bufnr, first, last, text)
-  if not vim.api.nvim_buf_is_valid(bufnr) then
-    notify("buffer closed, discarding explanation", vim.log.levels.WARN)
-    return
+---Parse `i. phrase` reply lines into a number->phrase map. Pure.
+---Numbers outside 1..n are ignored; later duplicates win.
+---@param reply string concatenated model text
+---@param n integer number of code lines sent
+---@return table<integer,string> phrases, integer matched
+function M.parse_numbered(reply, n)
+  local phrases = {}
+  local matched = 0
+  for line in (reply or ""):gmatch("[^\r\n]+") do
+    local num, rest = line:match("^%s*(%d+)%s*[:.%)%-%s]+%s*(.*)$")
+    num = tonumber(num)
+    if num and num >= 1 and num <= n then
+      local phrase = M.sanitize(rest or "")
+      if phrase ~= "" and phrases[num] == nil then
+        matched = matched + 1
+      end
+      if phrase ~= "" then
+        phrases[num] = phrase
+      end
+    end
   end
-  if text == "" then
-    notify("empty explanation, nothing inserted", vim.log.levels.WARN)
-    return
-  end
-  local leader, trailer = M.comment_parts(bufnr)
-  local trailer_suffix = trailer ~= "" and (" " .. trailer) or ""
-  local lines = vim.api.nvim_buf_get_lines(bufnr, first, last + 1, false)
-  if #lines == 0 then
-    return
-  end
-  local last_line = lines[#lines]
-  if trailer_suffix == "" then
-    last_line = M.strip_trailing_comment(last_line, leader)
-  end
-  local last_w = vim.fn.strdisplaywidth(last_line)
-  local budget = M.width_budget(bufnr)
-
-  if M.decide_placement(last_w, leader, trailer_suffix, text, budget) == "trailing" then
-    -- one buf_set_lines call == single undo step
-    vim.api.nvim_buf_set_lines(bufnr, last, last + 1, false, {
-      last_line .. "  " .. leader .. " " .. text .. trailer_suffix,
-    })
-  else
-    local indent = lines[1]:match("^(%s*)") or ""
-    vim.api.nvim_buf_set_lines(bufnr, first, first, false, {
-      indent .. leader .. " " .. text .. trailer_suffix,
-    })
-  end
+  return phrases, matched
 end
 
----Explain current visual selection as a one-line comment. Mapped to <leader>ce.
-function M.explain()
-  local bufnr = vim.api.nvim_get_current_buf()
-  if vim.fn.executable("opencode") ~= 1 then
-    notify("`opencode` CLI not found in PATH", vim.log.levels.ERROR)
-    return
+---Insert one comment per line; single buf_set_lines call == single undo step.
+---Lines with no phrase (blank code or missing reply) are left untouched.
+---@param bufnr integer
+---@param first integer 0-based start of range
+---@param lines string[] original range lines
+---@param phrases table<integer,string> 1-based per-line phrases
+---@return integer applied count of inserted comments
+local function apply_comments(bufnr, first, lines, phrases)
+  local leader, trailer = M.comment_parts(bufnr)
+  local trailer_suffix = trailer ~= "" and (" " .. trailer) or ""
+  local budget = M.width_budget(bufnr)
+  local out = {}
+  local applied = 0
+  for k, line in ipairs(lines) do
+    local phrase = phrases[k]
+    if phrase == nil or phrase == "" or vim.trim(line) == "" then
+      out[#out + 1] = line
+    else
+      local code = line
+      if trailer_suffix == "" then
+        code = M.strip_trailing_comment(code, leader)
+      end
+      local comment = leader .. " " .. phrase .. trailer_suffix
+      if M.decide_placement(vim.fn.strdisplaywidth(code), leader, trailer_suffix, phrase, budget) == "trailing" then
+        out[#out + 1] = code .. "  " .. comment
+      else
+        local indent = line:match("^(%s*)") or ""
+        out[#out + 1] = indent .. comment
+        out[#out + 1] = line
+      end
+      applied = applied + 1
+    end
   end
-  local s = vim.fn.getpos("'<")
-  local e = vim.fn.getpos("'>")
-  if s[2] == 0 or e[2] == 0 then
-    notify("no visual selection", vim.log.levels.WARN)
-    return
+  if applied > 0 then
+    vim.api.nvim_buf_set_lines(bufnr, first, first + #lines, false, out)
   end
-  local first = math.min(s[2], e[2]) - 1
-  local last = math.max(s[2], e[2]) - 1
+  return applied
+end
+
+---Core: explain explicit 0-based [first, last] range, one comment per line.
+---@param bufnr integer
+---@param first integer 0-based
+---@param last integer 0-based inclusive
+local function explain_range(bufnr, first, last)
   local lines = vim.api.nvim_buf_get_lines(bufnr, first, last + 1, false)
   if #lines == 0 then
     return
   end
-  local snippet = table.concat(lines, "\n")
-  if vim.trim(snippet) == "" then
+  local nonempty = 0
+  local numbered = {}
+  for k, line in ipairs(lines) do
+    numbered[#numbered + 1] = k .. ": " .. line
+    if vim.trim(line) ~= "" then
+      nonempty = nonempty + 1
+    end
+  end
+  if nonempty == 0 then
     notify("empty selection", vim.log.levels.WARN)
     return
   end
+  local n = #lines
+  local snippet = table.concat(numbered, "\n")
 
   local dir = project_dir(bufnr)
   local state = load_state()
   local session_id = state[dir]
   local tried_fresh = session_id == nil or session_id == ""
 
-  notify(session_id and "Explaining selection (reusing session)…" or "Explaining selection…")
+  notify(session_id and "Explaining lines (reusing session)…" or "Explaining lines…")
 
   local function attempt(sid)
     run_explain({
       dir = dir,
       session_id = sid,
+      n = n,
       snippet = snippet,
       on_done = function(res)
         local new_sid, reply = M.parse_run_output(res.stdout or "")
@@ -243,7 +275,26 @@ function M.explain()
             state[dir] = new_sid
             save_state(state)
           end
-          apply_comment(bufnr, first, last, M.sanitize(reply))
+          if not vim.api.nvim_buf_is_valid(bufnr) then
+            notify("buffer closed, discarding explanations", vim.log.levels.WARN)
+            return
+          end
+          -- async run: abort rather than misplace comments if buffer changed
+          local cur = vim.api.nvim_buf_get_lines(bufnr, first, first + #lines, false)
+          if table.concat(cur, "\n") ~= table.concat(lines, "\n") then
+            notify("buffer changed while explaining, discarding", vim.log.levels.WARN)
+            return
+          end
+          local phrases, matched = M.parse_numbered(reply, n)
+          local applied = apply_comments(bufnr, first, lines, phrases)
+          if applied == 0 then
+            notify("could not parse model reply, nothing inserted", vim.log.levels.WARN)
+          elseif matched < nonempty then
+            notify(
+              string.format("explained %d of %d lines", applied, nonempty),
+              vim.log.levels.WARN
+            )
+          end
           return
         end
         -- stored session may be pruned/foreign: retry once with a fresh session
@@ -265,6 +316,38 @@ function M.explain()
   end
 
   attempt(session_id)
+end
+
+---Explain current visual selection, one comment per line. Visual-mode entry.
+function M.explain_visual()
+  if vim.fn.executable("opencode") ~= 1 then
+    notify("`opencode` CLI not found in PATH", vim.log.levels.ERROR)
+    return
+  end
+  local bufnr = vim.api.nvim_get_current_buf()
+  local s = vim.fn.getpos("'<")
+  local e = vim.fn.getpos("'>")
+  if s[2] == 0 or e[2] == 0 then
+    notify("no visual selection", vim.log.levels.WARN)
+    return
+  end
+  explain_range(bufnr, math.min(s[2], e[2]) - 1, math.max(s[2], e[2]) - 1)
+end
+
+---Explain current line. Normal-mode entry.
+function M.explain_line()
+  if vim.fn.executable("opencode") ~= 1 then
+    notify("`opencode` CLI not found in PATH", vim.log.levels.ERROR)
+    return
+  end
+  local bufnr = vim.api.nvim_get_current_buf()
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  explain_range(bufnr, row, row)
+end
+
+---Legacy entry: visual selection. Kept for compatibility.
+function M.explain()
+  return M.explain_visual()
 end
 
 ---Forget the stored session for the current project (next run starts fresh).

@@ -1,8 +1,10 @@
 # --- Ghostty Configuration 1.2.3 ---
 
 # Theme & Appearance
+# Auto-switch with macOS appearance (both variants required for this form).
+# theme = light:Zenwritten Light,dark:Zenwritten Dark
 theme = Zenwritten Dark
-background = #000000
+# background = #000000
 # foreground = #EEEEEE
 background-opacity = 0.4
 background-blur-radius = 50
