@@ -20,7 +20,6 @@ My personal development environment and terminal configuration for macOS.
 | **fd** | Default | Modern `find` replacement |
 | **bat** | Default | Modern `cat` replacement |
 | **fzf** | Default | Fuzzy finder |
-| **yazi** | Akabones Dark / Light (WIP) | Terminal file manager |
 | **btop** | Default | System resource monitor |
 | **Fastfetch** | Akabones | System info display with custom avatar |
 
@@ -42,8 +41,10 @@ This will:
 1. Install Homebrew (if missing)
 2. Install all packages from `Brewfile`
 3. Install Oh My Zsh + Powerlevel10k
-4. Symlink all dotfiles into place
-5. Build the SketchyBar helper
+4. Install `opencode` plugin dependencies (`npm install`)
+5. Symlink all dotfiles into place
+6. Build the SketchyBar helper
+7. Start the SketchyBar service and launch AeroSpace
 
 Then restart your terminal or run `exec zsh`.
 
@@ -82,15 +83,13 @@ bash link.sh
 ├── .config/
 │   ├── aerospace/      # Tiling window manager
 │   ├── btop/           # System monitor
-│   ├── eza/            # ls replacement (lean, akabones)
 │   ├── fastfetch/      # System info display (akabones)
 │   ├── fd/             # find replacement config
 │   ├── ghostty/        # Terminal emulator (Zenwritten Dark)
 │   ├── herdr/          # AI terminal multiplexer (Catppuccin / Akabones)
 │   ├── nvim/           # Neovim (LazyVim + Zenwritten stark)
 │   ├── opencode/       # AI coding assistant
-│   ├── sketchybar/     # macOS status bar
-│   └── yazi/           # File manager (Akabones)
+│   └── sketchybar/     # macOS status bar
 ├── Brewfile            # Homebrew packages
 ├── setup.sh            # One-command install
 ├── link.sh             # Symlink creator
@@ -101,7 +100,12 @@ bash link.sh
 
 ## Notes
 
-- All themes are **Akabones / Zenwritten** (nvim + ghostty: Zenwritten stark; yazi/p10k/herdr: Akabones).
+- All themes are **Akabones / Zenwritten** (nvim + ghostty: Zenwritten stark; p10k/herdr: Akabones).
 - Machine-specific files (apps, keys, local paths) are not tracked.
 - Secrets, SSH keys, API tokens, and history files are **not** tracked.
 - The SketchyBar helper binary is not tracked (rebuild via `make` in `.config/sketchybar/helper/`).
+- The `Brewfile` is the authoritative package list and matches what `brew bundle check` expects. Deliberate omissions: `zsh` (Apple's `/bin/zsh` 5.9 is used), `powerlevel10k` (`setup.sh` installs it into Oh My Zsh, not via brew), `tmux` (herdr is the multiplexer), and `clang` (Xcode Command Line Tools provides `/usr/bin/clang`).
+- **Not installed by `setup.sh`:** Ghostty (a manual app, not a cask) and the SketchyBar icon font (see `.config/sketchybar/readme.md`). AeroSpace is installed as a cask app bundle and is launched normally, with no `launchctl` bootstrap needed.
+- **Self-managed, not tracked:** herdr's own plugins (`zenbones`, `herdr-nvim-nav`) and herdr's generated `herdr-tui-session.js` are gitignored because herdr reinstalls them. `link.sh` skips `herdr-tui-session.js` when it is absent, so a fresh clone gets no dangling symlink.
+- `opencode`'s `plugin/` and `plugins/` directories **are** tracked — they hold hand-written plugins that `npm install` cannot regenerate. `node_modules/` stays ignored and `setup.sh` runs `npm install` in `.config/opencode` for you.
+- Machine-specific toolchains (Solana, NVM, bun, rustup, VS Code CLI) are wired in `.zshrc` but degrade gracefully when absent.

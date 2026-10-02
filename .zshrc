@@ -43,12 +43,6 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # VS Code CLI
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-# Android
-export ANDROID_HOME="$HOME/Library/Android/sdk"
-export ANDROID_SDK_ROOT="$ANDROID_HOME"
-export PATH="$PATH:$ANDROID_HOME/emulator"
-export PATH="$PATH:$ANDROID_HOME/platform-tools"
-
 # fzf
 eval "$(fzf --zsh)"
 
@@ -88,17 +82,8 @@ alias lt="eza -a --tree --level=3 --icons=auto --git-ignore --hyperlink"
 [[ -r "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] && \
   source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
-# Yazi set up
+# Editor
 export EDITOR="nvim"
-
-function y() {
-	local tmp cwd; tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
-	command yazi "$@" --cwd-file="$tmp"
-	IFS= read -r -d '' cwd < "$tmp"
-	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd" || builtin true
-	command rm -f -- "$tmp"
-}
-
 
 # zoxide setup
 eval "$(zoxide init zsh --cmd cd)"
@@ -110,5 +95,4 @@ bindkey -v
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#EEEEEE'
-export PATH="/Users/akash/.local/bin:$PATH"
-export PATH="/opt/homebrew/Caskroom/claude-code/2.1.267:$PATH"
+export PATH="$HOME/.local/bin:$PATH"

@@ -14,8 +14,6 @@ session.json
 # opencode runtime files (keep package.json for sharing, ignore only generated)
 .config/opencode/node_modules/
 .config/opencode/bun.lock
-.config/opencode/plugin/
-.config/opencode/plugins/
 
 # herdr runtime state & self-managed plugins
 .config/herdr/.gitignore
@@ -23,6 +21,9 @@ session.json
 .config/herdr/plugins.json
 .config/herdr/release-notes.json
 .config/herdr/plugins/
+.config/herdr/sessions/
+.config/herdr/session-snapshots/
+.config/herdr/*.sock*
 .config/opencode/herdr-tui-session.js
 .config/opencode/herdr-opencode/
 
@@ -31,8 +32,6 @@ session.json
 
 # Backup files
 .config/herdr/*.bak-*
-.config/yazi/*.bak-*
-.config/eza/*.bak-*
 
 # OS files
 .DS_Store

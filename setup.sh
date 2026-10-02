@@ -51,15 +51,7 @@ else
 fi
 
 # --------------------------------------------------
-# 4. TPM (Tmux Plugin Manager) — install if tmux is used
-# --------------------------------------------------
-if command -v tmux &>/dev/null && [ ! -d "$HOME/.tmux/plugins/tpm" ]; then
-  info "Installing TPM..."
-  git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
-fi
-
-# --------------------------------------------------
-# 5. Nerd Fonts fallback (if brew cask didn't link)
+# 4. Nerd Fonts fallback (if brew cask didn't link)
 # --------------------------------------------------
 if ! fc-list 2>/dev/null | grep -qi "FiraCode Nerd Font"; then
   warn "FiraCode Nerd Font may not be installed."
@@ -67,7 +59,7 @@ if ! fc-list 2>/dev/null | grep -qi "FiraCode Nerd Font"; then
 fi
 
 # --------------------------------------------------
-# 6. Rust / rust-analyzer (for Neovim rustaceanvim)
+# 5. Rust / rust-analyzer (for Neovim rustaceanvim)
 # --------------------------------------------------
 if command -v rustup &>/dev/null; then
   for tc in $(rustup toolchain list 2>/dev/null | cut -d' ' -f1); do
@@ -85,6 +77,25 @@ if command -v rustup &>/dev/null; then
   fi
 else
   warn "rustup not found — skipping rust-analyzer. Install rustup: https://rustup.rs"
+fi
+
+# --------------------------------------------------
+# 6. opencode plugin dependencies
+# --------------------------------------------------
+OPENCODE_DIR="$DOTFILES_DIR/.config/opencode"
+if [ -f "$OPENCODE_DIR/package.json" ]; then
+  if command -v npm &>/dev/null; then
+    info "Installing opencode plugin dependencies..."
+    if (cd "$OPENCODE_DIR" && npm install --silent); then
+      ok "opencode dependencies installed."
+    else
+      warn "npm install failed — opencode plugins may not load."
+    fi
+  else
+    warn "npm not found — skipping opencode plugin dependencies."
+  fi
+else
+  ok "No opencode package.json, skipping."
 fi
 
 # --------------------------------------------------
@@ -107,6 +118,29 @@ if [ -f "$HELPER_DIR/makefile" ] && [ -f "$HELPER_DIR/helper.c" ]; then
 fi
 
 # --------------------------------------------------
+# 9. macOS bars & window manager services
+# --------------------------------------------------
+if command -v sketchybar &>/dev/null; then
+  if brew services list 2>/dev/null | grep -q '^sketchybar *started'; then
+    ok "SketchyBar service already running, skipping."
+  else
+    info "Starting SketchyBar service..."
+    brew services start sketchybar && ok "SketchyBar started." \
+      || warn "Could not start SketchyBar — run: brew services start sketchybar"
+  fi
+fi
+
+if [ -d "/Applications/aerospace.app" ]; then
+  if pgrep -q -x aerospace 2>/dev/null; then
+    ok "AeroSpace already running, skipping."
+  else
+    info "Launching AeroSpace..."
+    open -a aerospace 2>/dev/null && ok "AeroSpace launched." \
+      || warn "Could not launch AeroSpace — open it from Applications."
+  fi
+fi
+
+# --------------------------------------------------
 # Done
 # --------------------------------------------------
 echo ""
@@ -115,9 +149,8 @@ echo ""
 echo "  1. Restart your terminal: exec zsh"
 echo "  2. Or open a new terminal window"
 echo ""
-echo "  Optional:"
-echo "    - Open Ghostty to see the Gruvbox theme"
-echo "    - Open SketchyBar:  sketchybar --start-service"
-echo "    - Open AeroSpace:   sudo launchctl bootstrap system/..."
+echo "  Not covered by this script:"
+echo "    - Ghostty: install manually (not a Homebrew cask)"
+echo "    - SketchyBar icons: see .config/sketchybar/readme.md"
 echo "    - Update nvim plugins:  :Lazy update (inside nvim)"
 echo ""
