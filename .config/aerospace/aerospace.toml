@@ -121,6 +121,8 @@ alt-shift-d = 'exec-and-forget open -a Discord'
 alt-shift-n = 'exec-and-forget open -a Notion'
 alt-shift-t = 'exec-and-forget open -a Ghostty'
 alt-shift-m = 'exec-and-forget open -a "YT Music"'
+# YouTube Studio live-chat popout; opens floating via the on-window-detected rule
+alt-shift-y = 'exec-and-forget open "https://studio.youtube.com/live_chat?is_popout=1&v=RmdO9C4a4XA"'
 alt-shift-v = 'exec-and-forget open -a Codex'
 alt-shift-o = 'exec-and-forget open -a Obsidian'
 alt-shift-e = 'exec-and-forget open -a "DaVinci Resolve"'
@@ -149,9 +151,13 @@ alt-shift-l = ['join-with right', 'mode main']
 # ----------------------------
 
 # Chrome -> Browser workspace C
+# check-further-callbacks is required here. Callbacks are an ordered list that
+# stops at the first match, so without it this rule swallows every Chrome
+# window and no floating rule further down ever runs for Chrome.
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = 'move-node-to-workspace C'
+check-further-callbacks = true
 
 # Ghostty -> Terminal workspace T
 # Ghostty uses macOS native tabs: every tab is exposed as a separate NSWindow,
@@ -184,6 +190,21 @@ run = 'move-node-to-workspace A'
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari.WebApp.A0F53F03-A683-40AD-9A6E-10B04038A025'
 run = 'move-node-to-workspace M'
+
+# YouTube Studio live-chat popout — studio.youtube.com/live_chat?is_popout=1
+# The popout page never sets a <title>, so Chrome's window title *is* the URL.
+# Match live_chat/is_popout rather than "studio" so this stays specific.
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'live_chat|is_popout'
+run = 'layout floating'
+
+# Other YouTube Studio windows stay tiled. Placed before the generic "studio"
+# floating rule below, which otherwise matches them too.
+[[on-window-detected]]
+if.app-id = 'com.google.Chrome'
+if.window-title-regex-substring = 'studio'
+run = 'layout tiling'
 
 [[on-window-detected]]
 if.window-title-regex-substring = "Preferences|Settings|Dialog|Phantom Wallet|Phantom|Sign in|Log in|Connect|obs-studio|studio"
