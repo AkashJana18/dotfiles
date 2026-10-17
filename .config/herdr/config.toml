@@ -267,7 +267,7 @@ enabled = true
 # includes your ~/.ssh/config first and adds ServerAliveInterval/
 # ServerAliveCountMax as a fallback (so any keepalive you set yourself still
 # wins) to survive idle network/NAT timeouts. Set false to run plain ssh against
-# your ssh config unchanged — this does not force keepalive off, it only stops
+# your ssh config unchanged. This does not force keepalive off, it only stops
 # herdr from adding its own.
 # manage_ssh_config = true
 
