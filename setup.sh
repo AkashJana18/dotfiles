@@ -27,7 +27,10 @@ fi
 # 1. Install from Brewfile
 # --------------------------------------------------
 info "Installing packages from Brewfile..."
-brew bundle --file="$DOTFILES_DIR/Brewfile" --no-lock
+# HOMEBREW_BUNDLE_LOCK=0 states the intent (never write Brewfile.lock.json)
+# explicitly. Homebrew removed the --no-lock flag in 7.x, and passing an unknown
+# flag makes brew bundle exit 1, which under the set -e above aborted setup here.
+HOMEBREW_BUNDLE_LOCK=0 brew bundle --file="$DOTFILES_DIR/Brewfile"
 
 # --------------------------------------------------
 # 2. Oh My Zsh (if not installed)
