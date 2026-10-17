@@ -111,7 +111,13 @@ HELPER_DIR="$DOTFILES_DIR/.config/sketchybar/helper"
 if [ -f "$HELPER_DIR/makefile" ] && [ -f "$HELPER_DIR/helper.c" ]; then
   if ! [ -f "$HELPER_DIR/helper" ]; then
     info "Building sketchybar helper..."
-    (cd "$HELPER_DIR" && make 2>/dev/null && ok "sketchybar helper built.")
+    # Keep the compiler output: it is the only diagnostic if the build fails.
+    # The || warn is required, not cosmetic, because the subshell propagates
+    # make's exit status and the set -e above would abort the rest of setup
+    # (SketchyBar service, AeroSpace, the closing banner) over this optional
+    # component.
+    (cd "$HELPER_DIR" && make && ok "sketchybar helper built.") \
+      || warn "Could not build sketchybar helper. Build it manually: cd $HELPER_DIR && make"
   else
     ok "sketchybar helper already built, skipping."
   fi
