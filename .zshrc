@@ -44,7 +44,11 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # fzf
-eval "$(fzf --zsh)"
+# Guarded: `brew bundle` may not have run yet on a fresh clone, and an
+# unguarded `eval "$(fzf --zsh)"` prints "command not found" on every prompt.
+if command -v fzf >/dev/null 2>&1; then
+  eval "$(fzf --zsh)"
+fi
 
 export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border --info=inline"
 export FZF_DEFAULT_COMMAND="fd --hidden --strip-cwd-prefix --exclude .git"
@@ -86,13 +90,23 @@ alias lt="eza -a --tree --level=3 --icons=auto --git-ignore --hyperlink"
 export EDITOR="nvim"
 
 # zoxide setup
-eval "$(zoxide init zsh --cmd cd)"
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh --cmd cd)"
+fi
 
 # Vim mode in terminal
 bindkey -v
 
 # zsh-syntax-highlighting
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[arg0]='fg=#EEEEEE'
+# Guarded, and it falls back to `brew --prefix` so it still loads on an Intel
+# Mac, where Homebrew installs to /usr/local instead of /opt/homebrew.
+ZSH_HIGHLIGHT_FILE="/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+if [[ ! -r "$ZSH_HIGHLIGHT_FILE" ]]; then
+  ZSH_HIGHLIGHT_FILE="$(brew --prefix 2>/dev/null)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+if [[ -r "$ZSH_HIGHLIGHT_FILE" ]]; then
+  source "$ZSH_HIGHLIGHT_FILE"
+  typeset -A ZSH_HIGHLIGHT_STYLES
+  ZSH_HIGHLIGHT_STYLES[arg0]='fg=#EEEEEE'
+fi
 export PATH="$HOME/.local/bin:$PATH"
