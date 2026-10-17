@@ -145,7 +145,7 @@
   # Add an empty line before each prompt.
   typeset -g POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 
-  # Connect left prompt lines with these symbols — akabones: normal writing #EEEEEE
+  # Connect left prompt lines with these symbols: akabones: normal writing #EEEEEE
   typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX='%F{#EEEEEE}╭─'
   typeset -g POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX='%F{#EEEEEE}├─'
   typeset -g POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX='%F{#EEEEEE}╰─'
@@ -187,13 +187,13 @@
   fi
 
   #################################[ os_icon: os identifier ]##################################
-  # OS identifier color — akabones:  system dim #696969
+  # OS identifier color: akabones:  system dim #696969
   # typeset -g POWERLEVEL9K_OS_ICON_FOREGROUND='#696969'
   # Custom icon.
   # typeset -g POWERLEVEL9K_OS_ICON_CONTENT_EXPANSION='⭐'
 
   ################################[ prompt_char: prompt symbol ]################################
-  # ❯ in all modes — white insert, red normal, teal visual, mauve overwrite
+  # ❯ in all modes: white insert, red normal, teal visual, mauve overwrite
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIINS_FOREGROUND='#EEEEEE'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VICMD_FOREGROUND='#683d3b'
   typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_VIVIS_FOREGROUND='#C6D5CF'
@@ -374,12 +374,12 @@
     fi
 
     if (( $1 )); then
-      # Styling for up-to-date Git status — akabones: white clean, mauve modified, teal untracked, red conflicted
+      # Styling for up-to-date Git status: akabones: white clean, mauve modified, teal untracked, red conflicted
       local       meta='%f'     # default foreground
-      local      clean='%F{#EEEEEE}'   # white — akabones insert
-      local   modified='%F{#A5A6C5}'  # mauve — akabones overwrite
-      local  untracked='%F{#C6D5CF}'   # teal — akabones visual
-      local conflicted='%F{#683d3b}'  # red — akabones normal
+      local      clean='%F{#EEEEEE}'   # white: akabones insert
+      local   modified='%F{#A5A6C5}'  # mauve: akabones overwrite
+      local  untracked='%F{#C6D5CF}'   # teal: akabones visual
+      local conflicted='%F{#683d3b}'  # red: akabones normal
     else
       # Styling for incomplete and stale Git status.
       local       meta='%F{#696969}'  # grey foreground
@@ -491,7 +491,7 @@
   # Enable counters for staged, unstaged, etc.
   typeset -g POWERLEVEL9K_VCS_{STAGED,UNSTAGED,UNTRACKED,CONFLICTED,COMMITS_AHEAD,COMMITS_BEHIND}_MAX_NUM=-1
 
-  # Icon color — akabones: mauve for  github/git icon (statusline) & viowr
+  # Icon color: akabones: mauve for  github/git icon (statusline) & viowr
   typeset -g POWERLEVEL9K_VCS_VISUAL_IDENTIFIER_COLOR='#A5A6C5'
   typeset -g POWERLEVEL9K_VCS_LOADING_VISUAL_IDENTIFIER_COLOR='#696969'
   # Custom icon.
@@ -505,7 +505,7 @@
   typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
 
   # These settings are used for repositories other than Git or when gitstatusd fails and
-  # Powerlevel10k has to fall back to using vcs_info — akabones palette
+  # Powerlevel10k has to fall back to using vcs_info: akabones palette
   typeset -g POWERLEVEL9K_VCS_CLEAN_FOREGROUND='#EEEEEE'
   typeset -g POWERLEVEL9K_VCS_UNTRACKED_FOREGROUND='#C6D5CF'
   typeset -g POWERLEVEL9K_VCS_MODIFIED_FOREGROUND='#A5A6C5'
@@ -901,7 +901,7 @@
   typeset -g POWERLEVEL9K_CONTEXT_ROOT_FOREGROUND='#BDBDBD'
   # Context color in SSH without privileges.
   typeset -g POWERLEVEL9K_CONTEXT_{REMOTE,REMOTE_SUDO}_FOREGROUND='#EEEEEE'
-  # Default context color (no privileges, no SSH) — akabones: system #696969
+  # Default context color (no privileges, no SSH): akabones: system #696969
   typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND='#696969'
 
   # Context format when running with privileges: bold user@hostname.
@@ -1631,7 +1631,7 @@
   #   P9K_WIFI_BARS         | signal strength in bars, from 0 to 4 (derived from P9K_WIFI_RSSI and P9K_WIFI_NOISE)
 
   ####################################[ time: current time ]####################################
-  # Current time color — akabones: #EEEEEE for 08:14
+  # Current time color: akabones: #EEEEEE for 08:14
   typeset -g POWERLEVEL9K_TIME_FOREGROUND='#EEEEEE'
   # Format for the current time: 9:51 (no leading zero). See `man 3 strftime`.
   typeset -g POWERLEVEL9K_TIME_FORMAT='%D{%-H:%M}'

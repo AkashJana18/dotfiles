@@ -1,5 +1,5 @@
 #!/bin/bash
-# setup.sh — one-command install for dotfiles
+# setup.sh: one-command install for dotfiles
 # Usage: git clone https://github.com/AkashJana18/dotfiles.git ~/dotfiles && ~/dotfiles/setup.sh
 
 set -e
@@ -76,7 +76,7 @@ if command -v rustup &>/dev/null; then
     ok "rust-analyzer already installed, skipping."
   fi
 else
-  warn "rustup not found — skipping rust-analyzer. Install rustup: https://rustup.rs"
+  warn "rustup not found, skipping rust-analyzer. Install rustup: https://rustup.rs"
 fi
 
 # --------------------------------------------------
@@ -89,10 +89,10 @@ if [ -f "$OPENCODE_DIR/package.json" ]; then
     if (cd "$OPENCODE_DIR" && npm install --silent); then
       ok "opencode dependencies installed."
     else
-      warn "npm install failed — opencode plugins may not load."
+      warn "npm install failed, opencode plugins may not load."
     fi
   else
-    warn "npm not found — skipping opencode plugin dependencies."
+    warn "npm not found, skipping opencode plugin dependencies."
   fi
 else
   ok "No opencode package.json, skipping."
@@ -126,7 +126,7 @@ if command -v sketchybar &>/dev/null; then
   else
     info "Starting SketchyBar service..."
     brew services start sketchybar && ok "SketchyBar started." \
-      || warn "Could not start SketchyBar — run: brew services start sketchybar"
+      || warn "Could not start SketchyBar, run: brew services start sketchybar"
   fi
 fi
 
@@ -136,7 +136,7 @@ if [ -d "/Applications/aerospace.app" ]; then
   else
     info "Launching AeroSpace..."
     open -a aerospace 2>/dev/null && ok "AeroSpace launched." \
-      || warn "Could not launch AeroSpace — open it from Applications."
+      || warn "Could not launch AeroSpace, open it from Applications."
   fi
 fi
 

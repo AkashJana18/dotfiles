@@ -38,18 +38,18 @@ like • share • subscribe
           { section = "keys", gap = 1, padding = 1 },
           function()
             local quotes = {
-              "The best way to predict the future is to invent it.  — Alan Kay",
-              "Talk is cheap. Show me the code.  — Linus Torvalds",
-              "Programs must be written for people to read, and only incidentally for machines to execute.  — Harold Abelson",
-              "Simplicity is the soul of efficiency.  — Austin Freeman",
-              "First, solve the problem. Then, write the code.  — John Johnson",
-              "Code is like humor. When you have to explain it, it's bad.  — Cory House",
-              "Fix the cause, not the symptom.  — Steve Maguire",
-              "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away.  — Antoine de Saint-Exupéry",
-              "Stay hungry, stay foolish.  — Steve Jobs",
-              "The only way to learn a new programming language is by writing programs in it.  — Dennis Ritchie",
-              "Controlling complexity is the essence of computer programming.  — Brian Kernighan",
-              "Make it work, make it right, make it fast.  — Kent Beck",
+              "The best way to predict the future is to invent it. (Alan Kay)",
+              "Talk is cheap. Show me the code. (Linus Torvalds)",
+              "Programs must be written for people to read, and only incidentally for machines to execute. (Harold Abelson)",
+              "Simplicity is the soul of efficiency. (Austin Freeman)",
+              "First, solve the problem. Then, write the code. (John Johnson)",
+              "Code is like humor. When you have to explain it, it's bad. (Cory House)",
+              "Fix the cause, not the symptom. (Steve Maguire)",
+              "Perfection is achieved not when there is nothing more to add, but when there is nothing left to take away. (Antoine de Saint-Exupéry)",
+              "Stay hungry, stay foolish. (Steve Jobs)",
+              "The only way to learn a new programming language is by writing programs in it. (Dennis Ritchie)",
+              "Controlling complexity is the essence of computer programming. (Brian Kernighan)",
+              "Make it work, make it right, make it fast. (Kent Beck)",
             }
             local quote = quotes[math.random(#quotes)]
             -- split long quotes into two centered lines at the space nearest the middle
