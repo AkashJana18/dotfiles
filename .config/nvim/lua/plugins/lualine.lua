@@ -1,9 +1,32 @@
+-- Kept in a global because :Lazy reload re-sources this file: state held in
+-- module scope would be discarded while the previous timer stayed live, which
+-- is the leak this guards against.
+local state = rawget(_G, "__dotfiles_lualine_wakatime") or { waka = "  0:00" }
+rawset(_G, "__dotfiles_lualine_wakatime", state)
+
+local function stop_wakatime_timer()
+  local t = state.timer
+  if not t then
+    return
+  end
+  state.timer = nil
+  t:stop()
+  if not t:is_closing() then
+    t:close()
+  end
+end
+
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  group = vim.api.nvim_create_augroup("dotfiles_lualine_wakatime", { clear = true }),
+  callback = stop_wakatime_timer,
+})
+
 return {
   "nvim-lualine/lualine.nvim",
   event = "VeryLazy",
   opts = function(_, opts)
-    -- lualine_z:  + wakatime hh:mm (async, non-blocking)
-    local waka = "  0:00"
+    -- lualine_z:  + wakatime hh:mm (async, non-blocking)
+    local waka = state.waka
     local cli = vim.fn.exepath("wakatime-cli")
     if cli == "" then
       cli = "/opt/homebrew/bin/wakatime-cli"
@@ -39,29 +62,28 @@ return {
         cb(nil)
       end)
     end
-    -- async initial fetch (no block) — wakatime statusline is instant after VeryLazy
-    vim.defer_fn(function()
-      fetch_waka(function(val)
-        if val then
-          waka = val
-          vim.schedule(function()
-            pcall(vim.cmd, "redrawstatus")
-          end)
-        end
-      end)
-    end, 800)
-    local uv = vim.uv or vim.loop
-    local t = uv.new_timer()
-    if t then
-      t:start(60000, 60000, function()
-        fetch_waka(function(val)
-          if val and val ~= waka then
-            waka = val
-            vim.schedule(function()
-              vim.cmd("redrawstatus")
-            end)
-          end
+    local function apply_waka(val)
+      if val and val ~= waka then
+        waka = val
+        state.waka = val
+        vim.schedule(function()
+          pcall(vim.cmd, "redrawstatus")
         end)
+      end
+    end
+
+    -- async initial fetch (no block) -- wakatime statusline is instant after VeryLazy
+    vim.defer_fn(function()
+      fetch_waka(apply_waka)
+    end, 800)
+
+    -- Replace any timer left by a previous run before arming a new one.
+    local uv = vim.uv or vim.loop
+    stop_wakatime_timer()
+    state.timer = uv.new_timer()
+    if state.timer then
+      state.timer:start(60000, 60000, function()
+        fetch_waka(apply_waka)
       end)
     end
     opts.sections.lualine_z = {
