@@ -42,10 +42,19 @@ vim.keymap.set("n", "ef", function()
   vim.cmd("copen")
 end, { desc = "Diagnostics → quickfix" })
 
-vim.keymap.set("n", "<leader>xa", function()
+-- Virtual text is off by default (see plugins/diagnostics.lua), so this is the
+-- escape hatch for when you do want warnings/errors inline.
+local function toggle_diag_virtual_text()
   local vt = vim.diagnostic.config().virtual_text
   vim.diagnostic.config({ virtual_text = not vt })
-end, { desc = "Toggle diagnostic virtual text" })
+  vim.notify("diagnostic virtual text: " .. (vt and "off" or "on"))
+end
+
+vim.api.nvim_create_user_command("DiagText", function()
+  toggle_diag_virtual_text()
+end, { desc = "Toggle diagnostic virtual text", nargs = 0 })
+
+vim.keymap.set("n", "<leader>xa", toggle_diag_virtual_text, { desc = "Toggle diagnostic virtual text" })
 
 -- 0.12 natives: opt-in plugins ship under pack/dist/opt, packadd once so
 -- :Undotree / :DiffTool are always available (:lsp is builtin, no packadd needed).
