@@ -14,6 +14,8 @@ session.json
 # opencode runtime files (keep package.json for sharing, ignore only generated)
 .config/opencode/node_modules/
 .config/opencode/bun.lock
+# generated background service password
+.config/opencode/service.json
 
 # herdr runtime state & self-managed plugins
 .config/herdr/.gitignore
