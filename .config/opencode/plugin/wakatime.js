@@ -5,9 +5,77 @@ var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require
   throw Error('Dynamic require of "' + x + '" is not supported');
 });
 
-// src/index.ts
-import * as fs4 from "node:fs";
-import * as path5 from "node:path";
+// src/v1.ts
+import * as fs5 from "node:fs";
+import * as path6 from "node:path";
+
+// src/file-changes.ts
+function record(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value) ? value : void 0;
+}
+function count(value) {
+  return typeof value === "number" && Number.isFinite(value) ? value : 0;
+}
+function fileChange(file, additions = 0, deletions = 0, isWrite = false) {
+  return typeof file === "string" && file.length > 0 ? [{ file, info: { additions, deletions, isWrite } }] : [];
+}
+function diffChange(value) {
+  const diff = record(value);
+  return diff ? fileChange(
+    diff.file,
+    count(diff.additions),
+    count(diff.deletions),
+    diff.status === "added"
+  ) : [];
+}
+function extractFileChanges(tool, metadata, output, title) {
+  if (!metadata) return [];
+  switch (tool) {
+    case "edit": {
+      const diff = diffChange(metadata.filediff);
+      return diff.length > 0 ? diff : fileChange(metadata.filePath);
+    }
+    case "write":
+      return fileChange(metadata.filepath, 0, 0, !metadata.exists);
+    case "patch": {
+      const files = output.split("\n").filter((line) => line.startsWith("  ") && !line.startsWith("   ")).map((line) => line.trim()).filter((file) => file && !file.includes(" "));
+      const diff = files.length > 0 ? Math.round(count(metadata.diff) / files.length) : 0;
+      return files.flatMap(
+        (file) => fileChange(file, Math.max(diff, 0), Math.max(-diff, 0))
+      );
+    }
+    case "multiedit":
+      return Array.isArray(metadata.results) ? metadata.results.flatMap(
+        (result) => diffChange(record(result)?.filediff)
+      ) : [];
+    case "read":
+      return fileChange(title);
+    default:
+      return [];
+  }
+}
+function extractV2FileChanges(tool, input, result) {
+  const value = record(result);
+  const output = record(value?.output);
+  switch (tool) {
+    case "edit":
+    case "patch": {
+      const files = output?.files ?? record(value?.metadata)?.files;
+      return Array.isArray(files) ? files.flatMap(diffChange) : [];
+    }
+    case "write":
+      return fileChange(
+        output?.target ?? output?.resource,
+        0,
+        0,
+        output?.existed === false
+      );
+    case "read":
+      return output?.type === "list-page" ? [] : fileChange(record(input)?.path);
+    default:
+      return [];
+  }
+}
 
 // src/logger.ts
 import * as fs from "node:fs";
@@ -98,48 +166,48 @@ var Logger = class {
 };
 var logger = new Logger();
 
+// src/tracker.ts
+import * as fs4 from "node:fs";
+import * as path5 from "node:path";
+
 // src/state.ts
 import * as crypto from "node:crypto";
 import * as fs2 from "node:fs";
 import * as path3 from "node:path";
-var stateFile = path3.join(getWakatimeResourcesDir(), "opencode.json");
-function initState(projectFolder) {
-  const hash = crypto.createHash("md5").update(projectFolder).digest("hex").slice(0, 8);
-  stateFile = path3.join(getWakatimeResourcesDir(), `opencode-${hash}.json`);
-}
-function readState() {
-  try {
-    const content = fs2.readFileSync(stateFile, "utf-8");
-    return JSON.parse(content);
-  } catch {
-    return {};
-  }
-}
-function writeState(state) {
-  try {
-    const dir = path3.dirname(stateFile);
-    if (!fs2.existsSync(dir)) {
-      fs2.mkdirSync(dir, { recursive: true });
-    }
-    fs2.writeFileSync(stateFile, JSON.stringify(state, null, 2));
-  } catch {
-  }
-}
 function timestamp() {
   return Math.floor(Date.now() / 1e3);
 }
-function shouldSendHeartbeat(force = false) {
-  if (force) return true;
-  try {
-    const state = readState();
-    const lastHeartbeat = state.lastHeartbeatAt ?? 0;
-    return timestamp() - lastHeartbeat >= 60;
-  } catch {
-    return true;
+function createState(projectFolder) {
+  const hash = crypto.createHash("md5").update(projectFolder).digest("hex").slice(0, 8);
+  const stateFile = path3.join(
+    getWakatimeResourcesDir(),
+    `opencode-${hash}.json`
+  );
+  function readState() {
+    try {
+      const value = JSON.parse(fs2.readFileSync(stateFile, "utf-8"));
+      return value && typeof value.lastHeartbeatAt === "number" && Number.isFinite(value.lastHeartbeatAt) ? { lastHeartbeatAt: value.lastHeartbeatAt } : {};
+    } catch {
+      return {};
+    }
   }
-}
-function updateLastHeartbeat() {
-  writeState({ lastHeartbeatAt: timestamp() });
+  function writeState(state) {
+    try {
+      fs2.mkdirSync(path3.dirname(stateFile), { recursive: true });
+      fs2.writeFileSync(stateFile, JSON.stringify(state, null, 2));
+    } catch {
+    }
+  }
+  return {
+    readState,
+    writeState,
+    shouldSendHeartbeat(force = false) {
+      return force || timestamp() - (readState().lastHeartbeatAt ?? 0) >= 60;
+    },
+    updateLastHeartbeat() {
+      writeState({ lastHeartbeatAt: timestamp() });
+    }
+  };
 }
 
 // src/wakatime.ts
@@ -284,7 +352,7 @@ var Dependencies = class {
     }
   }
   async getLatestVersion() {
-    return new Promise((resolve) => {
+    return new Promise((resolve3) => {
       const options = {
         headers: {
           "User-Agent": "opencode-wakatime"
@@ -298,13 +366,13 @@ var Dependencies = class {
         res.on("end", () => {
           try {
             const json = JSON.parse(data);
-            resolve(json.tag_name);
+            resolve3(json.tag_name);
           } catch {
-            resolve(void 0);
+            resolve3(void 0);
           }
         });
       }).on("error", () => {
-        resolve(void 0);
+        resolve3(void 0);
       });
     });
   }
@@ -341,7 +409,7 @@ var Dependencies = class {
     }
   }
   downloadFile(url, dest) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve3, reject) => {
       const followRedirect = (url2, redirectCount = 0) => {
         if (redirectCount > 5) {
           reject(new Error("Too many redirects"));
@@ -363,7 +431,7 @@ var Dependencies = class {
           res.pipe(file);
           file.on("finish", () => {
             file.close();
-            resolve();
+            resolve3();
           });
           file.on("error", (err) => {
             fs3.unlinkSync(dest);
@@ -439,15 +507,15 @@ var dependencies = new Dependencies();
 // src/wakatime.ts
 function getVersion() {
   if (true) {
-    return "1.3.9";
+    return "1.4.0";
   }
   try {
-    const fs5 = __require("node:fs");
-    const path6 = __require("node:path");
+    const fs6 = __require("node:fs");
+    const path8 = __require("node:path");
     const { fileURLToPath } = __require("node:url");
-    const __dirname = path6.dirname(fileURLToPath(import.meta.url));
+    const __dirname = path8.dirname(fileURLToPath(import.meta.url));
     const pkg = JSON.parse(
-      fs5.readFileSync(path6.join(__dirname, "..", "package.json"), "utf-8")
+      fs6.readFileSync(path8.join(__dirname, "..", "package.json"), "utf-8")
     );
     return pkg.version;
   } catch {
@@ -500,15 +568,15 @@ async function ensureCliInstalled() {
   }
 }
 function sendHeartbeats(params, timeoutMs = DEFAULT_HEARTBEAT_TIMEOUT_MS) {
-  const heartbeatBatch = new Promise((resolve) => {
+  const heartbeatBatch = new Promise((resolve3) => {
     if (params.length === 0) {
-      resolve();
+      resolve3(void 0);
       return;
     }
     const cliLocation = dependencies.getCliLocation();
     if (!dependencies.isCliInstalled()) {
       logger.warn("wakatime-cli not installed, skipping heartbeat");
-      resolve();
+      resolve3(void 0);
       return;
     }
     const [primary, ...extra] = params;
@@ -544,13 +612,13 @@ function sendHeartbeats(params, timeoutMs = DEFAULT_HEARTBEAT_TIMEOUT_MS) {
     activeHeartbeatProcesses.add(child);
     let resolved = false;
     let forceKillId;
-    const resolveOnce = () => {
+    const resolveOnce = (result) => {
       if (!resolved) {
         resolved = true;
         activeHeartbeatProcesses.delete(child);
         clearTimeout(timeoutId);
         if (forceKillId) clearTimeout(forceKillId);
-        resolve();
+        resolve3(result);
       }
     };
     const timeoutId = setTimeout(() => {
@@ -582,7 +650,7 @@ function sendHeartbeats(params, timeoutMs = DEFAULT_HEARTBEAT_TIMEOUT_MS) {
       } else if (signal) {
         logger.debug(`wakatime-cli terminated by signal ${signal}`);
       }
-      resolveOnce();
+      resolveOnce(signal ? "interrupted" : void 0);
     });
     const timestamp2 = Date.now() / 1e3;
     const extraHeartbeats = extra.map((heartbeat) => ({
@@ -616,303 +684,270 @@ async function flushHeartbeats() {
   }
 }
 
-// src/index.ts
-function isMessagePartUpdatedEvent(event) {
-  return event.type === "message.part.updated";
-}
-var processedCallIds = /* @__PURE__ */ new Set();
-var fileChanges = /* @__PURE__ */ new Map();
-var OPENCODE_VERSION_CACHE = path5.join(
-  getWakatimeResourcesDir(),
-  "opencode-version-cache.json"
-);
-function extractFileChanges(tool, metadata, output, title) {
-  const changes = [];
-  if (!metadata) return changes;
-  switch (tool) {
-    case "edit": {
-      const filediff = metadata.filediff;
-      if (filediff?.file) {
-        changes.push({
-          file: filediff.file,
-          info: {
-            additions: filediff.additions ?? 0,
-            deletions: filediff.deletions ?? 0,
-            isWrite: false
-          }
-        });
-      } else {
-        const filePath = metadata.filePath;
-        if (filePath) {
-          changes.push({
-            file: filePath,
-            info: { additions: 0, deletions: 0, isWrite: false }
-          });
-        }
-      }
-      break;
-    }
-    case "write": {
-      const filepath = metadata.filepath;
-      const exists = metadata.exists;
-      if (filepath) {
-        changes.push({
-          file: filepath,
-          info: {
-            additions: 0,
-            deletions: 0,
-            isWrite: !exists
-            // New file creation
-          }
-        });
-      }
-      break;
-    }
-    case "patch": {
-      const diff = metadata.diff;
-      const lines = output.split("\n");
-      const files = [];
-      for (const line of lines) {
-        if (line.startsWith("  ") && !line.startsWith("   ")) {
-          const file = line.trim();
-          if (file && !file.includes(" ")) {
-            files.push(file);
-          }
-        }
-      }
-      const perFileDiff = files.length > 0 ? Math.round((diff ?? 0) / files.length) : 0;
-      for (const file of files) {
-        changes.push({
-          file,
-          info: {
-            additions: perFileDiff > 0 ? perFileDiff : 0,
-            deletions: perFileDiff < 0 ? Math.abs(perFileDiff) : 0,
-            isWrite: false
-          }
-        });
-      }
-      break;
-    }
-    case "multiedit": {
-      const results = metadata.results;
-      if (results) {
-        for (const result of results) {
-          if (result.filediff?.file) {
-            changes.push({
-              file: result.filediff.file,
-              info: {
-                additions: result.filediff.additions ?? 0,
-                deletions: result.filediff.deletions ?? 0,
-                isWrite: false
-              }
-            });
-          }
-        }
-      }
-      break;
-    }
-    case "read": {
-      if (title) {
-        changes.push({
-          file: title,
-          info: { additions: 0, deletions: 0, isWrite: false }
-        });
-      }
-      break;
-    }
-    case "glob":
-    case "grep":
-    case "codesearch": {
-      break;
-    }
-    case "bash": {
-      break;
-    }
-  }
-  return changes;
-}
-async function processHeartbeat(projectFolder, opencodeVersion, opencodeClient, force = false) {
-  if (!shouldSendHeartbeat(force) && !force) {
-    logger.debug("Skipping heartbeat (rate limited)");
-    return;
-  }
-  if (fileChanges.size === 0) {
-    logger.debug("No file changes to report");
-    if (force) {
-      await flushHeartbeats();
-    }
-    return;
-  }
-  const heartbeats = [];
-  for (const [file, info] of fileChanges.entries()) {
-    const lineChanges = info.additions - info.deletions;
-    heartbeats.push({
-      entity: file,
-      projectFolder,
-      lineChanges,
-      category: "ai coding",
-      isWrite: info.isWrite,
-      opencodeVersion,
-      opencodeClient
-    });
-    logger.debug(
-      `Sent heartbeat for ${file}: +${info.additions}/-${info.deletions} lines`
-    );
-  }
-  fileChanges.clear();
-  updateLastHeartbeat();
-  void sendHeartbeats(heartbeats);
-  if (force) {
-    logger.debug(`Waiting for ${heartbeats.length} heartbeats to complete...`);
-    await flushHeartbeats();
-    logger.debug("All heartbeat batches completed");
-  }
-}
-function trackFileChange(file, info) {
-  const existing = fileChanges.get(file) ?? {
-    additions: 0,
-    deletions: 0,
-    lastModified: Date.now(),
-    isWrite: false
-  };
-  fileChanges.set(file, {
-    additions: existing.additions + (info.additions ?? 0),
-    deletions: existing.deletions + (info.deletions ?? 0),
-    lastModified: Date.now(),
-    isWrite: existing.isWrite || (info.isWrite ?? false)
-  });
-}
+// src/tracker.ts
 function resolveProjectFolder(worktree, projectWorktree, cwd = process.cwd()) {
   return worktree || projectWorktree || cwd;
 }
-var plugin = async (ctx) => {
-  const wakatimeCfgPath = getWakatimeConfigFilePath();
+async function createTracker(options) {
   try {
-    const cfg = fs4.readFileSync(wakatimeCfgPath, "utf-8");
-    const debugMatch = cfg.match(/^\s*debug\s*=\s*true\s*$/m);
-    if (debugMatch) {
-      logger.setLevel(0 /* DEBUG */);
-    }
+    const cfg = fs4.readFileSync(getWakatimeConfigFilePath(), "utf-8");
+    if (/^\s*debug\s*=\s*true\s*$/m.test(cfg)) logger.setLevel(0 /* DEBUG */);
   } catch {
   }
-  const { project, worktree, client } = ctx;
-  const projectFolder = resolveProjectFolder(worktree, project.worktree);
-  const projectName = path5.basename(projectFolder);
-  const rawClient = process.env.OPENCODE_CLIENT || "cli";
-  const opencodeClient = rawClient === "app" ? "web" : rawClient;
-  let opencodeVersion = "unknown";
-  try {
-    const cached = JSON.parse(fs4.readFileSync(OPENCODE_VERSION_CACHE, "utf-8"));
-    if (cached.version && Date.now() - cached.timestamp < 6e4) {
-      opencodeVersion = cached.version;
-    }
-  } catch {
-  }
-  if (opencodeVersion === "unknown") {
-    try {
-      const httpClient = client.global._client ?? client._client;
-      const { data } = await httpClient.get({ url: "/global/health" });
-      if (data?.version) {
-        opencodeVersion = data.version;
-        try {
-          fs4.writeFileSync(
-            OPENCODE_VERSION_CACHE,
-            JSON.stringify({ version: data.version, timestamp: Date.now() })
-          );
-        } catch {
-        }
-      }
-    } catch (err) {
-      logger.warn(`Could not fetch OpenCode version: ${err}`);
-    }
-  }
-  logger.debug(
-    `OpenCode client: ${opencodeClient}, version: ${opencodeVersion}`
-  );
-  initState(projectFolder);
-  const cliInstalled = await ensureCliInstalled();
-  if (!cliInstalled) {
+  const state = createState(options.projectFolder);
+  const sessions = /* @__PURE__ */ new Map();
+  const processedCalls = /* @__PURE__ */ new Set();
+  const interruptedBatches = /* @__PURE__ */ new Set();
+  if (!await ensureCliInstalled()) {
     logger.warn(
       "WakaTime CLI could not be installed. Please install it manually: https://wakatime.com/terminal"
     );
   } else {
     logger.info(
-      `OpenCode WakaTime plugin initialized for project: ${projectName}`
+      `OpenCode WakaTime plugin initialized for project: ${path5.basename(options.projectFolder)}`
     );
   }
+  async function processHeartbeat(force = false, sessionID) {
+    if (!state.shouldSendHeartbeat(force)) return;
+    const files = /* @__PURE__ */ new Map();
+    for (const [id, changes] of sessions) {
+      if (sessionID !== void 0 && id !== sessionID) continue;
+      for (const [file, info] of changes) {
+        const previous = files.get(file);
+        files.set(file, {
+          additions: (previous?.additions ?? 0) + info.additions,
+          deletions: (previous?.deletions ?? 0) + info.deletions,
+          isWrite: !!previous?.isWrite || info.isWrite
+        });
+      }
+      sessions.delete(id);
+    }
+    if (files.size > 0) {
+      const heartbeats = Array.from(
+        files,
+        ([entity, info]) => ({
+          entity,
+          projectFolder: options.projectFolder,
+          lineChanges: info.additions - info.deletions,
+          category: "ai coding",
+          isWrite: info.isWrite,
+          opencodeVersion: options.opencodeVersion,
+          opencodeClient: options.opencodeClient
+        })
+      );
+      state.updateLastHeartbeat();
+      const delivery = sendHeartbeats(heartbeats).then((result) => {
+        if (result === "interrupted") interruptedBatches.add(heartbeats);
+      });
+      if (options.waitForDelivery) await delivery;
+    }
+    if (force) await flushHeartbeats();
+  }
+  return {
+    processHeartbeat,
+    async flush() {
+      await processHeartbeat(true);
+      const retry = Array.from(interruptedBatches);
+      interruptedBatches.clear();
+      for (const batch of retry) await sendHeartbeats(batch);
+    },
+    async track(sessionID, callID, changes) {
+      if (changes.length === 0) return;
+      const key = JSON.stringify([sessionID, callID]);
+      if (processedCalls.has(key)) return;
+      processedCalls.add(key);
+      if (processedCalls.size > 1e3) {
+        for (const old of Array.from(processedCalls).slice(0, 500))
+          processedCalls.delete(old);
+      }
+      const files = sessions.get(sessionID) ?? /* @__PURE__ */ new Map();
+      for (const change of changes) {
+        const file = path5.resolve(options.directory, change.file);
+        try {
+          if (fs4.statSync(file).isDirectory()) continue;
+        } catch {
+        }
+        const previous = files.get(file);
+        files.set(file, {
+          additions: (previous?.additions ?? 0) + (change.info.additions ?? 0),
+          deletions: (previous?.deletions ?? 0) + (change.info.deletions ?? 0),
+          isWrite: !!previous?.isWrite || !!change.info.isWrite
+        });
+      }
+      if (files.size > 0) sessions.set(sessionID, files);
+      await processHeartbeat();
+    }
+  };
+}
+function getClientName() {
+  const client = process.env.OPENCODE_CLIENT || "cli";
+  return client === "app" ? "web" : client;
+}
+
+// src/v1.ts
+async function getVersion2(client) {
+  const cacheFile = path6.join(
+    getWakatimeResourcesDir(),
+    "opencode-version-cache.json"
+  );
+  try {
+    const cached = JSON.parse(fs5.readFileSync(cacheFile, "utf-8"));
+    if (typeof cached.version === "string" && Date.now() - cached.timestamp < 6e4)
+      return cached.version;
+  } catch {
+  }
+  try {
+    const sdk = client;
+    const httpClient = sdk.global?._client ?? sdk._client;
+    const response = await httpClient?.get({ url: "/global/health" });
+    const version = response?.data?.version;
+    if (version) {
+      try {
+        fs5.writeFileSync(
+          cacheFile,
+          JSON.stringify({ version, timestamp: Date.now() })
+        );
+      } catch {
+      }
+      return version;
+    }
+  } catch (error) {
+    logger.warn(`Could not fetch OpenCode version: ${error}`);
+  }
+  return "unknown";
+}
+var v1Plugin = async (ctx) => {
+  const projectFolder = resolveProjectFolder(
+    ctx.worktree,
+    ctx.project.worktree
+  );
+  const tracker = await createTracker({
+    projectFolder,
+    directory: ctx.directory || projectFolder,
+    opencodeVersion: await getVersion2(ctx.client),
+    opencodeClient: getClientName()
+  });
   const hooks = {
-    // Track chat activity
-    "chat.message": async (_input, _output) => {
-      logger.debug("Chat message received");
-      if (fileChanges.size > 0) {
-        await processHeartbeat(projectFolder, opencodeVersion, opencodeClient);
+    "chat.message": async () => tracker.processHeartbeat(),
+    event: async ({ event }) => {
+      if (event.type === "message.part.updated") {
+        const part = event.properties.part;
+        if (part.type !== "tool" || part.state.status !== "completed") return;
+        await tracker.track(
+          part.sessionID,
+          part.callID,
+          extractFileChanges(
+            part.tool,
+            part.state.metadata,
+            part.state.output ?? "",
+            part.state.title
+          )
+        );
+      }
+      if (event.type === "session.idle") {
+        await tracker.processHeartbeat(true, event.properties.sessionID);
+      }
+      if (event.type === "session.deleted") {
+        await tracker.processHeartbeat(true, event.properties.info.id);
       }
     },
-    // Listen to all events for tool execution and session lifecycle
-    // Using message.part.updated captures both regular tool calls AND
-    // tools executed via the batch tool
-    event: async ({ event }) => {
-      if (isMessagePartUpdatedEvent(event)) {
-        const { part } = event.properties;
-        if (part.type !== "tool") return;
-        const toolPart = part;
-        if (toolPart.state.status !== "completed") return;
-        if (processedCallIds.has(toolPart.callID)) return;
-        processedCallIds.add(toolPart.callID);
-        if (processedCallIds.size > 1e3) {
-          const idsArray = Array.from(processedCallIds);
-          for (let i = 0; i < 500; i++) {
-            processedCallIds.delete(idsArray[i]);
-          }
-        }
-        const { tool } = toolPart;
-        const state = toolPart.state;
-        const { metadata, title, output } = state;
-        logger.debug(`Tool executed: ${tool} - ${title}`);
-        const changes = extractFileChanges(
-          tool,
-          metadata,
-          output,
-          title
-        );
-        for (const change of changes) {
-          try {
-            if (fs4.statSync(change.file).isDirectory()) {
-              logger.debug(`Skipping directory: ${change.file}`);
-              continue;
-            }
-          } catch {
-          }
-          trackFileChange(change.file, change.info);
-          logger.debug(
-            `Tracked: ${change.file} (+${change.info.additions ?? 0}/-${change.info.deletions ?? 0})`
-          );
-        }
-        if (changes.length > 0) {
-          await processHeartbeat(
-            projectFolder,
-            opencodeVersion,
-            opencodeClient
-          );
-        }
-      }
-      if (event.type === "session.deleted" || event.type === "session.idle") {
-        logger.debug(`Session event: ${event.type} - sending final heartbeat`);
-        await processHeartbeat(
-          projectFolder,
-          opencodeVersion,
-          opencodeClient,
-          true
-        );
-      }
-    }
+    dispose: async () => tracker.flush()
   };
   return hooks;
 };
-var index_default = plugin;
+
+// src/v2.ts
+import * as path7 from "node:path";
+import { setTimeout as setTimeout2 } from "node:timers/promises";
+async function setupV2(ctx) {
+  const tracker = await createTracker({
+    projectFolder: ctx.location.project.directory,
+    directory: ctx.location.directory,
+    opencodeVersion: ctx.app.version,
+    opencodeClient: getClientName(),
+    // V2 can terminate child processes when the runtime scope shuts down.
+    // Finish the rate-limited send before returning control to the host.
+    waitForDelivery: true
+  });
+  const controller = new AbortController();
+  const registrations = [];
+  const trackedSessions = /* @__PURE__ */ new Set();
+  const matchesLocation = (directory) => path7.resolve(directory) === path7.resolve(ctx.location.directory);
+  try {
+    registrations.push(
+      await ctx.tool.hook("execute.after", async (event) => {
+        if (controller.signal.aborted || event.status !== "completed") return;
+        const changes = extractV2FileChanges(
+          event.tool,
+          event.input,
+          event.result
+        );
+        if (changes.length === 0) return;
+        try {
+          const session = await ctx.session.get({ sessionID: event.sessionID });
+          if (controller.signal.aborted || !matchesLocation(session.location.directory))
+            return;
+          trackedSessions.add(event.sessionID);
+          await tracker.track(event.sessionID, event.id, changes);
+        } catch (error) {
+          logger.warn(`Could not track OpenCode tool activity: ${error}`);
+        }
+      })
+    );
+    registrations.push(
+      await ctx.session.hook("prompt", async (event) => {
+        if (!controller.signal.aborted)
+          await tracker.processHeartbeat(false, event.sessionID);
+      })
+    );
+  } catch (error) {
+    controller.abort();
+    await Promise.all(
+      registrations.map((registration) => registration.dispose())
+    );
+    throw error;
+  }
+  const events = (async () => {
+    while (!controller.signal.aborted) {
+      try {
+        for await (const event of ctx.event.subscribe({
+          signal: controller.signal
+        })) {
+          if (controller.signal.aborted) break;
+          const sessionID = event.data.sessionID;
+          if (!sessionID || !trackedSessions.has(sessionID)) continue;
+          if (event.location && !matchesLocation(event.location.directory))
+            continue;
+          if (event.type === "session.deleted" || event.type === "session.execution.succeeded" || event.type === "session.execution.failed" || event.type === "session.execution.interrupted" || event.type === "session.idle" || event.type === "session.status" && event.data.status?.type === "idle") {
+            trackedSessions.delete(sessionID);
+            await tracker.processHeartbeat(true, sessionID);
+          }
+        }
+      } catch (error) {
+        if (!controller.signal.aborted)
+          logger.warn(`OpenCode event stream disconnected: ${error}`);
+      }
+      if (!controller.signal.aborted) {
+        await setTimeout2(1e3, void 0, { signal: controller.signal }).catch(
+          () => {
+          }
+        );
+      }
+    }
+  })();
+  return async () => {
+    controller.abort();
+    await events;
+    await tracker.flush();
+  };
+}
+
+// src/server.ts
+var server_default = {
+  id: "opencode.wakatime",
+  server: v1Plugin,
+  setup: setupV2
+};
 export {
-  index_default as default,
-  extractFileChanges,
-  plugin,
-  resolveProjectFolder
+  server_default as default
 };
