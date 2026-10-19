@@ -13,7 +13,6 @@ My personal development environment and terminal configuration for macOS.
 | **Neovim** | LazyVim + Zenwritten (stark, transparent) | Terminal editor |
 | **Ghostty** | Zenwritten Dark | GPU-accelerated terminal emulator |
 | **Herdr** | Akabones (zenbones plugin) | Terminal multiplexer for AI agents |
-| **Superfile** | Akabones Dark / Light | TUI file manager |
 | **SketchyBar** | Custom (Transparent) | Customizable macOS status bar |
 | **AeroSpace** | Tiling window manager | Keyboard-driven window management |
 | **Zsh** | Oh My Zsh + Powerlevel10k (akabones) | Interactive shell with plugins |
@@ -90,8 +89,7 @@ bash link.sh
 │   ├── herdr/          # AI terminal multiplexer (Catppuccin / Akabones)
 │   ├── nvim/           # Neovim (LazyVim + Zenwritten stark)
 │   ├── opencode/       # AI coding assistant
-│   ├── sketchybar/     # macOS status bar
-│   └── superfile/      # TUI file manager (Akabones)
+│   └── sketchybar/     # macOS status bar
 ├── Brewfile            # Homebrew packages
 ├── setup.sh            # One-command install
 ├── link.sh             # Symlink creator
@@ -102,14 +100,12 @@ bash link.sh
 
 ## Notes
 
-- All themes are **Akabones / Zenwritten** (nvim + ghostty: Zenwritten stark; p10k/herdr/superfile: Akabones).
+- All themes are **Akabones / Zenwritten** (nvim + ghostty: Zenwritten stark; p10k/herdr: Akabones).
 - Machine-specific files (apps, keys, local paths) are not tracked.
 - Secrets, SSH keys, API tokens, and history files are **not** tracked.
 - The SketchyBar helper binary is not tracked (rebuild via `make` in `.config/sketchybar/helper/`).
 - The `Brewfile` is the authoritative package list and matches what `brew bundle check` expects. Deliberate omissions: `zsh` (Apple's `/bin/zsh` 5.9 is used), `powerlevel10k` (`setup.sh` installs it into Oh My Zsh, not via brew), `tmux` (herdr is the multiplexer), and `clang` (Xcode Command Line Tools provides `/usr/bin/clang`).
 - **Not installed by `setup.sh`:** Ghostty (a manual app, not a cask) and the SketchyBar icon font (see `.config/sketchybar/readme.md`). AeroSpace is installed as a cask app bundle and is launched normally, with no `launchctl` bootstrap needed.
 - **Self-managed, not tracked:** herdr's own plugins (`zenbones`, `herdr-nvim-nav`) and herdr's generated `herdr-tui-session.js` are gitignored because herdr reinstalls them. `link.sh` skips `herdr-tui-session.js` when it is absent, so a fresh clone gets no dangling symlink.
-- **superfile** keeps its config in `~/Library/Application Support/superfile`, not `~/.config`, so `link.sh` handles it separately: `config.toml` and `hotkeys.toml` are symlinked, along with the two Akabones theme files individually. The theme files are linked one by one rather than the whole `theme/` directory so superfile's 21 bundled themes stay available. Runtime state (`pinned.json`, `superfile.log`, `firstUseCheck`, `toggle*`) stays local and untracked.
-- `ffmpeg`, `poppler` (for `pdftoppm`) and `exiftool` are in the `Brewfile` because `spf --debug-info` reports them as dependencies. Without them superfile's image/video thumbnails, PDF previews and EXIF orientation handling silently degrade.
 - `opencode`'s `plugin/` and `plugins/` directories **are** tracked — they hold hand-written plugins that `npm install` cannot regenerate. `node_modules/` stays ignored and `setup.sh` runs `npm install` in `.config/opencode` for you.
 - Machine-specific toolchains (Solana, NVM, bun, rustup, VS Code CLI) are wired in `.zshrc` but degrade gracefully when absent.
